@@ -114,6 +114,16 @@
       border-radius: 50%;
     }
 
+    .birthday-date {
+      font-size: 2rem;
+      color: #ffcc70;
+      margin: 10px 0;
+      font-weight: 500;
+      text-shadow: 0 0 10px rgba(255, 204, 112, 0.5);
+      opacity: 0;
+      animation: fadeIn 1s 1s forwards;
+    }
+
     .subtitle {
       font-size: 1.8rem;
       margin-top: 20px;
@@ -170,13 +180,6 @@
     .card:nth-child(1) { animation-delay: 0.8s; }
     .card:nth-child(2) { animation-delay: 1.0s; }
     .card:nth-child(3) { animation-delay: 1.2s; }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
 
     .card:hover {
       transform: translateY(-15px);
@@ -377,10 +380,186 @@
       100% { transform: translateY(-100px) translateX(calc(-100vw + 100px)) rotate(360deg); opacity: 0; }
     }
 
+    /* Cake cutting animation */
+    .cake-container {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      margin: 40px auto;
+      perspective: 1000px;
+    }
+
+    .cake {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      animation: float-cake 3s ease-in-out infinite;
+    }
+
+    @keyframes float-cake {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+
+    .cake-layer {
+      position: absolute;
+      width: 200px;
+      height: 60px;
+      background: linear-gradient(to bottom, #f9e0bb, #f5c27a);
+      border-radius: 10px;
+      bottom: 0;
+      left: 50px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .cake-layer:before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
+      border-radius: 10px;
+    }
+
+    .cake-layer.top {
+      height: 40px;
+      bottom: 60px;
+      background: linear-gradient(to bottom, #f5c27a, #e6a756);
+    }
+
+    .cake-layer.top:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 10px;
+      background: #ff6b8b;
+      bottom: 0;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .candle {
+      position: absolute;
+      width: 8px;
+      height: 40px;
+      background: linear-gradient(to bottom, #ff6b8b, #ff8e53);
+      bottom: 100px;
+      left: 150px;
+      z-index: 2;
+    }
+
+    .candle:before {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 8px;
+      background: #ff6b8b;
+      bottom: 40px;
+      left: -4px;
+      border-radius: 50%;
+    }
+
+    .flame {
+      position: absolute;
+      width: 12px;
+      height: 24px;
+      background: linear-gradient(to bottom, #ffff00, #ff8c00);
+      border-radius: 50% 50% 20% 20%;
+      bottom: 140px;
+      left: 146px;
+      z-index: 3;
+      box-shadow: 0 0 20px #ff8c00, 0 0 40px #ffff00;
+      animation: flicker 0.5s infinite alternate;
+      transform-origin: bottom;
+    }
+
+    @keyframes flicker {
+      0%, 100% { transform: scale(1) rotate(-5deg); }
+      50% { transform: scale(1.1) rotate(5deg); }
+    }
+
+    .knife {
+      position: absolute;
+      width: 120px;
+      height: 20px;
+      background: linear-gradient(to right, #d3d3d3, #ffffff);
+      bottom: 50px;
+      right: 30px;
+      z-index: 4;
+      transform: rotate(-15deg);
+      transform-origin: left center;
+      animation: cut-cake 3s infinite;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .knife:before {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 20px;
+      background: linear-gradient(to right, #ff6b6b, #ff8e53);
+      left: -30px;
+      border-radius: 5px 0 0 5px;
+    }
+
+    @keyframes cut-cake {
+      0%, 100% { transform: rotate(-15deg); }
+      50% { transform: rotate(15deg); }
+    }
+
+    .cake-piece {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(to bottom, #f9e0bb, #f5c27a);
+      bottom: 0;
+      right: 50px;
+      z-index: 1;
+      border-radius: 0 0 10px 0;
+      transform-origin: left bottom;
+      animation: slice-move 3s infinite;
+    }
+
+    @keyframes slice-move {
+      0%, 100% { transform: rotate(0); }
+      50% { transform: rotate(-30deg) translateX(-20px); }
+    }
+
+    /* Special effects */
+    .magic-sparkle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: white;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+      box-shadow: 0 0 10px 5px white;
+      animation: sparkle 1s forwards;
+    }
+
+    @keyframes sparkle {
+      0% { transform: scale(0); opacity: 0.8; }
+      100% { transform: scale(3); opacity: 0; }
+    }
+
+    .birthday-countdown {
+      font-size: 1.5rem;
+      color: #ffcc70;
+      margin: 20px 0;
+      text-align: center;
+      font-weight: 500;
+      text-shadow: 0 0 10px rgba(255, 204, 112, 0.5);
+    }
+
     /* Responsive Design */
     @media (max-width: 768px) {
       h1 {
         font-size: 3rem;
+      }
+      
+      .birthday-date {
+        font-size: 1.5rem;
       }
       
       .subtitle {
@@ -401,11 +580,20 @@
       .upload-container {
         padding: 15px;
       }
+      
+      .cake-container {
+        width: 250px;
+        height: 150px;
+      }
     }
 
     @media (max-width: 480px) {
       h1 {
         font-size: 2.2rem;
+      }
+      
+      .birthday-date {
+        font-size: 1.2rem;
       }
       
       .subtitle {
@@ -418,6 +606,11 @@
 
       .card img {
         height: 200px;
+      }
+      
+      .cake-container {
+        width: 200px;
+        height: 120px;
       }
     }
 
@@ -472,6 +665,54 @@
       left: 8%;
       animation: floating 6s ease-in-out infinite 1s;
     }
+    
+    /* Special message reveal */
+    .special-message {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 30px;
+      margin: 40px auto;
+      max-width: 800px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: scale(0.8);
+      animation: reveal-message 1s 2s forwards;
+    }
+
+    @keyframes reveal-message {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .special-message h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #ffcc70;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    .special-message p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .special-message::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, #f6d365, #fda085, #ffcc70);
+    }
   </style>
 </head>
 <body>
@@ -497,8 +738,28 @@
       <div class="balloon floating"></div>
       
       <h1>Happy Birthday Siddhant!</h1>
+      <div class="birthday-date">25th July - Your Special Day</div>
       <p class="subtitle">May your special day be filled with joy, laughter, and unforgettable moments. Here's to another year of amazing adventures and dreams come true!</p>
+      
+      <!-- Cake cutting animation -->
+      <div class="cake-container">
+        <div class="cake">
+          <div class="cake-layer"></div>
+          <div class="cake-layer top"></div>
+          <div class="candle"></div>
+          <div class="flame"></div>
+          <div class="knife"></div>
+          <div class="cake-piece"></div>
+        </div>
+      </div>
     </header>
+    
+    <!-- Special message section -->
+    <div class="special-message">
+      <h2>A Special Message For You</h2>
+      <p>On this wonderful day, we celebrate the amazing person you are! Your kindness, intelligence, and vibrant spirit light up every room you enter.</p>
+      <p>May this year bring you closer to your dreams, fill your life with happiness, and surround you with people who appreciate you as much as we do!</p>
+    </div>
     
     <div class="gallery">
       <div class="card">
@@ -523,7 +784,7 @@
       </div>
     </div>
     
-    <!-- Image upload section -->
+       <!-- Image upload section -->
     <div class="upload-container">
       <h3>Add Your Own Birthday Photo</h3>
       <button class="upload-btn" id="uploadBtn">
@@ -647,6 +908,9 @@
         newCard.style.opacity = '1';
         newCard.style.transform = 'translateY(0)';
       }, 100);
+      
+      // Add sparkle effect
+      createSparkleEffect(newCard);
     }
     
     // Create floating emojis
@@ -672,6 +936,40 @@
         }, 8000);
       }, 500);
     }
+    
+    // Create sparkle effect
+    function createSparkleEffect(element) {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'magic-sparkle';
+      
+      // Position randomly within the element
+      const rect = element.getBoundingClientRect();
+      const x = Math.random() * rect.width;
+      const y = Math.random() * rect.height;
+      
+      sparkle.style.left = `${x}px`;
+      sparkle.style.top = `${y}px`;
+      
+      element.appendChild(sparkle);
+      
+      // Remove after animation
+      setTimeout(() => {
+        sparkle.remove();
+      }, 1000);
+    }
+    
+    // Add sparkle effect when clicking anywhere
+    document.addEventListener('click', function(e) {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'magic-sparkle';
+      sparkle.style.left = `${e.clientX - 5}px`;
+      sparkle.style.top = `${e.clientY - 5}px`;
+      document.body.appendChild(sparkle);
+      
+      setTimeout(() => {
+        sparkle.remove();
+      }, 1000);
+    });
     
     // Fireworks animation  
     function initFireworks() {
@@ -719,7 +1017,7 @@
         
         draw() {
           ctx.beginPath();
-          ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+          ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
           ctx.fillStyle = this.color;
           ctx.globalAlpha = this.alpha;
           ctx.fill();
@@ -733,27 +1031,29 @@
           this.y = y;
           this.color = color;
           this.velocity = {
-            x: (Math.random() - 0.5) * 6,
-            y: (Math.random() - 0.5) * 6
+            x: (Math.random() - 0.5) * 5,
+            y: (Math.random() - 0.5) * 5
           };
           this.alpha = 1;
-          this.decay = Math.random() * 0.02 + 0.01;
+          this.decay = Math.random() * 0.015 + 0.01;
+          this.size = Math.random() * 3 + 1;
         }
         
         update() {
-          this.velocity.y += 0.05;
+          this.velocity.y += 0.05; // gravity
           this.x += this.velocity.x;
           this.y += this.velocity.y;
           this.alpha -= this.decay;
         }
         
         draw() {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-          ctx.fillStyle = this.color;
+          ctx.save();
           ctx.globalAlpha = this.alpha;
+          ctx.fillStyle = this.color;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
           ctx.fill();
-          ctx.closePath();
+          ctx.restore();
         }
       }
       
@@ -797,6 +1097,14 @@
       createConfetti();
       createFloatingEmojis();
       initFireworks();
+      
+      // Add sparkles to special elements periodically
+      setInterval(() => {
+        const specialElements = document.querySelectorAll('h1, .cake-container, .special-message');
+        specialElements.forEach(el => {
+          createSparkleEffect(el);
+        });
+      }, 3000);
     });
   </script>
 </body>
