@@ -265,6 +265,90 @@
       font-family: serif;
     }
 
+    /* Status Lines Section */
+    .status-lines {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      padding: 30px;
+      margin: 40px auto;
+      max-width: 800px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .status-lines h2 {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #ffcc70;
+      font-family: 'Dancing Script', cursive;
+      text-shadow: 0 0 10px rgba(255, 204, 112, 0.5);
+    }
+
+    .status-line {
+      font-size: 1.5rem;
+      line-height: 1.6;
+      margin: 25px 0;
+      padding: 15px 20px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+      font-weight: 500;
+      text-align: center;
+      transition: all 0.3s ease;
+      animation: glow-pulse 3s infinite alternate;
+    }
+
+    .status-line:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    }
+
+    .status-line::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, 
+        rgba(255, 215, 0, 0.1) 0%, 
+        rgba(255, 255, 255, 0.05) 50%, 
+        rgba(255, 215, 0, 0.1) 100%);
+      z-index: -1;
+    }
+
+    .status-line:nth-child(2) { animation-delay: 0.2s; color: #f6d365; }
+    .status-line:nth-child(3) { animation-delay: 0.4s; color: #fda085; }
+    .status-line:nth-child(4) { animation-delay: 0.6s; color: #ff6b6b; }
+    .status-line:nth-child(5) { animation-delay: 0.8s; color: #4facfe; }
+    .status-line:nth-child(6) { animation-delay: 1.0s; color: #6a11cb; }
+    .status-line:nth-child(7) { animation-delay: 1.2s; color: #25D366; }
+    .status-line:nth-child(8) { animation-delay: 1.4s; color: #ffcc70; }
+    .status-line:nth-child(9) { animation-delay: 1.6s; color: #ff1a53; }
+    .status-line:nth-child(10) { animation-delay: 1.8s; color: #00f2fe; }
+    .status-line:nth-child(11) { animation-delay: 2.0s; color: #f5c27a; }
+
+    @keyframes glow-pulse {
+      0% {
+        text-shadow: 0 0 5px currentColor;
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+      }
+      100% {
+        text-shadow: 0 0 15px currentColor;
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+      }
+    }
+
+    .emoji {
+      font-size: 1.3em;
+      vertical-align: middle;
+      margin: 0 5px;
+      animation: float 3s ease-in-out infinite;
+    }
+
     .upload-container {
       text-align: center;
       margin: 30px 0;
@@ -552,6 +636,88 @@
       text-shadow: 0 0 10px rgba(255, 204, 112, 0.5);
     }
 
+    /* Gift Section */
+    .gift-section {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 30px;
+      margin: 40px auto;
+      max-width: 800px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .gift-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: #ffcc70;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    .gift-image {
+      max-width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+      margin: 20px 0;
+    }
+
+    .gift-image:hover {
+      transform: scale(1.03);
+    }
+
+    .whatsapp-message {
+      background: rgba(37, 211, 102, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 30px auto 0;
+      max-width: 600px;
+      border: 1px solid rgba(37, 211, 102, 0.3);
+      position: relative;
+    }
+
+    .whatsapp-message::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, #25D366, #128C7E);
+    }
+
+    .whatsapp-message p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .whatsapp-btn {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+      margin-top: 15px;
+    }
+
+    .whatsapp-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+    }
+
     /* Responsive Design */
     @media (max-width: 768px) {
       h1 {
@@ -585,6 +751,19 @@
         width: 250px;
         height: 150px;
       }
+      
+      .status-lines {
+        padding: 20px;
+      }
+      
+      .status-line {
+        font-size: 1.3rem;
+        padding: 12px 15px;
+      }
+      
+      .gift-section h2 {
+        font-size: 1.8rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -612,106 +791,22 @@
         width: 200px;
         height: 120px;
       }
-    }
-
-    /* Floating animation for decorative elements */
-    .floating {
-      animation: floating 3s ease-in-out infinite;
-    }
-
-    @keyframes floating {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0px); }
-    }
-
-    .balloon {
-      position: absolute;
-      width: 60px;
-      height: 70px;
-      border-radius: 50%;
-      opacity: 0.7;
-      z-index: -1;
-    }
-
-    .balloon::before {
-      content: "";
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 2px;
-      height: 50px;
-      background: rgba(255, 255, 255, 0.5);
-    }
-
-    .balloon:nth-child(1) {
-      background: radial-gradient(circle at 30% 30%, #ff6b6b, #ff1a53);
-      top: 10%;
-      left: 5%;
-      animation: floating 5s ease-in-out infinite;
-    }
-
-    .balloon:nth-child(2) {
-      background: radial-gradient(circle at 30% 30%, #4facfe, #00f2fe);
-      top: 15%;
-      right: 7%;
-      animation: floating 4s ease-in-out infinite 0.5s;
-    }
-
-    .balloon:nth-child(3) {
-      background: radial-gradient(circle at 30% 30%, #6a11cb, #2575fc);
-      bottom: 20%;
-      left: 8%;
-      animation: floating 6s ease-in-out infinite 1s;
-    }
-    
-    /* Special message reveal */
-    .special-message {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 30px;
-      margin: 40px auto;
-      max-width: 800px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      opacity: 0;
-      transform: scale(0.8);
-      animation: reveal-message 1s 2s forwards;
-    }
-
-    @keyframes reveal-message {
-      to {
-        opacity: 1;
-        transform: scale(1);
+      
+      .status-line {
+        font-size: 1.1rem;
       }
-    }
-
-    .special-message h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: #ffcc70;
-      font-family: 'Dancing Script', cursive;
-    }
-
-    .special-message p {
-      font-size: 1.2rem;
-      line-height: 1.8;
-      margin-bottom: 20px;
-    }
-
-    .special-message::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg, #f6d365, #fda085, #ffcc70);
+      
+      .gift-section {
+        padding: 20px;
+      }
+      
+      .gift-section h2 {
+        font-size: 1.6rem;
+      }
+      
+      .whatsapp-message p {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -731,7 +826,6 @@
       <div class="confetti" style="left:70%; animation-delay:3s;"></div>
       <div class="confetti" style="left:80%; animation-delay:3.5s;"></div>
       <div class="confetti" style="left:90%; animation-delay:4s;"></div>
-      
       <!-- Balloons -->
       <div class="balloon floating"></div>
       <div class="balloon floating"></div>
@@ -781,6 +875,55 @@
           <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Hero">
         </div>
         <div class="status">"Level up another year like a true hero!"</div>
+      </div>
+    </div>
+    
+    <!-- Hindi Status Lines Section -->
+    <div class="status-lines">
+      <h2>Siddhant's Attitude Status</h2>
+      <div class="status-line">
+        <span class="emoji">🎂</span> "आज मेरा दिन है, जलने वालों की छुट्टी है!" <span class="emoji">😎🔥</span>
+      </div>
+      <div class="status-line">
+        <span class="emoji">🥳</span> "जो मुझे Wish नहीं करते, वही सबसे ज़्यादा स्टोरी देखते हैं!" <span class="emoji">👀💥</span>
+      </div>
+      <div class="status-line">
+        <span class="emoji">💯</span> "Birthday मेरा है, पर शो पूरा साल चलता है!" <span class="emoji">🎬👑</span>
+      </div>
+      <div class="status-line">
+        <span class="emoji">😌</span> "इस attitude को आज जन्मदिन मिला है!" <span class="emoji">🎈</span>
+      </div>
+      <div class="status-line">
+        <span class="emoji">😏</span> "कमाल का सीन है, आज मेरे नाम का बर्थडे सीन है!" <span class="emoji">🥂💫</span>
+      </div>
+      <div class="status-line">
+        <span class="emoji">🤘</span> "आज मैं खुद को Gift कर रहा हूँ – औरों की टेंशन छोड़ दी!" <span class="emoji">🎁🚫</span>
+      </div>
+      <div class="status-line">
+        <span class="emoji">🥶</span> "Cool होने का मतलब ये नहीं कि Birthday पर chill न करूँ!" <span class="emoji">❄️🎉</span>
+      </div>
+      <div class="status-line">
+        <span class="emoji">💣</span> "जिन्होंने ignore किया, आज उन्हें भी feel हो रहा है!" <span class="emoji">💔➡️🔥</span>
+      </div>
+      <div class="status-line">
+        <span class="emoji">🔥</span> "King पैदा हुआ है आज, Respect दो या Reset हो जाओ!" <span class="emoji">👑📴</span>
+      </div>
+      <div class="status-line">
+        <span class="emoji">🚀</span> "ये दिन हर साल आता है… और हर बार मुझे और भी दमदार बनाता है!" <span class="emoji">💪🎂</span>
+      </div>
+    </div>
+    
+    <!-- Gift Section -->
+    <div class="gift-section">
+      <h2>A Special Gift For You</h2>
+      <img src="https://i.postimg.cc/9Xscc0Bc/IMG-20250725-WA0009.jpg" alt="Birthday Gift" class="gift-image">
+      
+      <div class="whatsapp-message">
+        <p>Send your congratulations to Siddhant on WhatsApp:</p>
+        <p><strong>"Happy Birthday Siddhant! Wishing you a fantastic year ahead!"</strong></p>
+        <a href="https://wa.me/6351598832" class="whatsapp-btn" target="_blank">
+          <i class="fab fa-whatsapp"></i> Send WhatsApp Message
+        </a>
       </div>
     </div>
     
@@ -957,6 +1100,7 @@
         sparkle.remove();
       }, 1000);
     }
+    
     // Add sparkle effect when clicking anywhere
     document.addEventListener('click', function(e) {
       const sparkle = document.createElement('div');
@@ -1055,7 +1199,6 @@
           ctx.restore();
         }
       }
-      
       function animate() {
         ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -1099,11 +1242,22 @@
       
       // Add sparkles to special elements periodically
       setInterval(() => {
-        const specialElements = document.querySelectorAll('h1, .cake-container, .special-message');
+        const specialElements = document.querySelectorAll('h1, .cake-container, .special-message, .gift-section, .status-lines');
         specialElements.forEach(el => {
           createSparkleEffect(el);
         });
       }, 3000);
+      
+      // Add animation to status lines
+      document.querySelectorAll('.status-line').forEach((line, index) => {
+        line.style.animationDelay = `${index * 0.2}s`;
+        
+        // Make emojis bounce
+        const emojis = line.querySelectorAll('.emoji');
+        emojis.forEach(emoji => {
+          emoji.style.animation = `float 3s ease-in-out ${index * 0.2}s infinite`;
+        });
+      });
     });
   </script>
 </body>
