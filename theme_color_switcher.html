@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Birthday Theme Switcher | Siddhant</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <style>
+    body { font-family:'Segoe UI',cursive,sans-serif; background:var(--theme-bg,#ffe9ff);
+      min-height:100vh;margin:0; transition:background .3s;}
+    .container { max-width:430px; margin:53px auto 34px auto;
+      background:var(--theme-card,#fffefaee); border-radius:19px;
+      box-shadow:0 7px 28px #efb6fa23; text-align:center;
+      padding:2em 1.1em 2.2em 1.1em; border:1.5px solid #d1bede;
+      transition:.3s;}
+    h1 { font-family:'Brush Script MT',cursive;font-size:2em;color:var(--theme-main,#b016a8);}
+    .theme-list {display:flex;flex-wrap:wrap;justify-content:center;gap:1em;margin:1.5em 0 2em 0;}
+    .theme-btn {border:none;border-radius:17px;padding:13px 20px;font-size:1em;font-weight:bold;cursor:pointer;transition:.18s;}
+    .theme-btn.pink {background:#fad3ef;color:#ae118d;}
+    .theme-btn.blue {background:#c8f6ff;color:#1765a8;}
+    .theme-btn.night {background:#2e234f;color:#ffdfff;}
+    .theme-btn.royal {background:#d6c2ff;color:#460a93;}
+    .theme-btn.gold {background:#ffe16d;color:#af8000;}
+    .theme-btn.fun {background:linear-gradient(90deg,#ffb0f5 30%,#c7fff6 70%);color:#332;}
+    .msg {font-size:1.06em;color:var(--theme-main,#671084);margin:1.5em 0 .8em 0;}
+    @media(max-width:460px){.container{max-width:97vw;}}
+  </style>
+</head>
+<body>
+  <div class="container" id="themedCard">
+    <h1 id="heading">🎨 Choose Birthday Theme</h1>
+    <div class="theme-list">
+      <button class="theme-btn pink" onclick="setTheme('pink')">🎀 Pink Daydream</button>
+      <button class="theme-btn blue" onclick="setTheme('blue')">💙 Sky Blue</button>
+      <button class="theme-btn gold" onclick="setTheme('golden')">🌟 Golden Glam</button>
+      <button class="theme-btn night" onclick="setTheme('night')">🌙 Night Disco</button>
+      <button class="theme-btn royal" onclick="setTheme('royal')">👑 Royal Purple</button>
+      <button class="theme-btn fun" onclick="setTheme('fun')">🦄 Fun Rainbow</button>
+    </div>
+    <div class="msg">Click any theme—watch the magic!<br>
+      (You can use this method in every card/section. Edit style/colors as you like!)
+    </div>
+    <div style="color:#a78faf;margin:1.7em 0 0 0;font-size:.97em;">
+      <b>Pro Tip:</b> Theme auto-save/localStorage भी जोड़ सकते हैं!
+    </div>
+  </div>
+  <script>
+    function setTheme(theme){
+      const root=document.documentElement;
+      let vars={};
+      if(theme=="pink"){
+        vars={
+          "--theme-bg":"#fde6fa",
+          "--theme-card":"#fff5fc",
+          "--theme-main":"#b016a8"
+        };
+      } else if(theme=="blue"){
+        vars={
+          "--theme-bg":"#e1fdff",
+          "--theme-card":"#eaffff",
+          "--theme-main":"#1587af"
+        };
+      } else if(theme=="night"){
+        vars={
+          "--theme-bg":"#23233a",
+          "--theme-card":"#242541e8",
+          "--theme-main":"#ffdfff"
+        };
+      } else if(theme=="royal"){
+        vars={
+          "--theme-bg":"#ece0ff",
+          "--theme-card":"#efe7fc",
+          "--theme-main":"#52209b"
+        }
+      } else if(theme=="golden"){
+        vars={
+          "--theme-bg":"#fff7da",
+          "--theme-card":"#fffbe1",
+          "--theme-main":"#a28800"
+        }
+      } else if(theme=="fun"){
+        vars={
+          "--theme-bg":"linear-gradient(90deg,#ffe6fb 40%,#e9fff8 100%)",
+          "--theme-card":"linear-gradient(100deg,#f3fff4 40%,#ffe9fb 100%)",
+          "--theme-main":"#ff21b8"
+        }
+      }
+      for(let k in vars) root.style.setProperty(k,vars[k]);
+    }
+  </script>
+</body>
+</html>
