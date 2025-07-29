@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Scratch Card Wish | Siddhant</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <style>
+    body {
+      background: linear-gradient(120deg,#fcfffa 55%,#e3faff 100%);
+      min-height:100vh; margin:0; font-family:'Segoe UI',cursive,sans-serif;
+    }
+    .container {
+      max-width:410px; margin:60px auto 36px auto; background:#fffefaee;
+      border-radius:18px; box-shadow:0 7px 24px #fbc9fa32; text-align:center;
+      padding:2em 1em 2.6em 1em;
+    }
+    h1 {font-family:'Brush Script MT',cursive;font-size:2em;color:#e96dbc;}
+    .scratch-wrap {margin:2em 0;}
+    #scratchArea {width:290px;height:105px;background:#eee;
+      border-radius:17px;display:block;margin:0 auto;position:relative;
+      box-shadow:0 2px 18px #ffaaeaa7; touch-action:none;}
+    .reveal-text {
+      position:absolute;top:17px;left:0;width:100%;text-align:center;
+      color:#ff1686;font-size:1.45em;font-weight:bold;
+      font-family:'Brush Script MT',cursive;
+      z-index:1;pointer-events:none;
+    }
+    .msg2 {margin:1.8em 0 .8em 0;color:#c578c7;font-size:1.09em;}
+    @media(max-width:450px){.container{max-width:97vw;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🃏 Scratch Card Surprise</h1>
+    <div class="scratch-wrap" style="position:relative;">
+      <div class="reveal-text" id="revealText">Happy Birthday Siddhant! 🎉<br>Wishing You Surprises & Joy!</div>
+      <canvas id="scratchArea"></canvas>
+    </div>
+    <div class="msg2">
+      👉 स्क्रैच/रगड़ कर Surprise Message reveal करो!<br>
+      (आप इस कार्ड में फोटो, GIF, fact भी रख सकते हैं!)
+    </div>
+  </div>
+  <script>
+    // ------ Simple scratch-card effect ------
+    const canvas = document.getElementById('scratchArea');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = 290, h = canvas.height = 105;
+    // Draw cover layer (gray/gradient)
+    function drawCover(){
+      ctx.clearRect(0,0,w,h);
+      let grad = ctx.createLinearGradient(0,0,w,0);
+      grad.addColorStop(0,'#cbc7e7'); grad.addColorStop(1,'#fcfef0');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0,0,w,h);
+      ctx.globalAlpha=1;
+      ctx.font="bold 1.2em 'Segoe UI',cursive";
+      ctx.fillStyle="#ee22a2";
+      ctx.fillText("Scratch Here!",w/2-70,h/2+10);
+    }
+    drawCover();
+    // Scratch effect vars
+    let uncover = false;
+    function scratch(x,y){
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(x,y,15,0,2*Math.PI);
+      ctx.fill();
+      ctx.globalCompositeOperation = 'source-over';
+    }
+
+    function percentRevealed(){
+      let img = ctx.getImageData(0,0,w,h).data, clear=0;
+      for(let i=3;i<img.length;i+=4){if(img[i]<16) clear++;}
+      return Math.round(100*clear/(w*h));
+    }
+
+    canvas.addEventListener('mousedown',e=>{uncover=true;});
+    canvas.addEventListener('mouseup',e=>{uncover=false;});
+    canvas.addEventListener('mouseleave',e=>{uncover=false;});
+    canvas.addEventListener('mousemove',e=>{
+      if(!uncover) return;
+      let rect=canvas.getBoundingClientRect();
+      scratch(e.clientX-rect.left,e.clientY-rect.top);
+      if(percentRevealed()>56) canvas.style.opacity=0.1;
+    });
+    // Touch Events (Mobile)
+    canvas.addEventListener('touchstart',e=>{
+      uncover=true;
+      let rect=canvas.getBoundingClientRect();
+      let t=e.touches[0],x=t.clientX-rect.left,y=t.clientY-rect.top;
+      scratch(x,y);
+      if(percentRevealed()>56) canvas.style.opacity=0.1;
+    });
+    canvas.addEventListener('touchend',e=>{uncover=false;});
+    canvas.addEventListener('touchmove',e=>{
+      if(!uncover)return;
+      let rect=canvas.getBoundingClientRect();
+      let t=e.touches[0],x=t.clientX-rect.left,y=t.clientY-rect.top;
+      scratch(x,y);
+      if(percentRevealed()>56) canvas.style.opacity=0.1;
+    });
+    // Reset on resize/reload
+    window.addEventListener('resize',drawCover);
+  </script>
+</body>
+</html>
