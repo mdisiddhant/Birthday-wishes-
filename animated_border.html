@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Animated Border + Neon | Siddhant</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <style>
+    body {
+      margin:0; min-height:100vh;
+      font-family:'Segoe UI',cursive,sans-serif;
+      background:linear-gradient(135deg,#bddfff 0%,#fde5ff 100%);
+      overflow-x:hidden;
+    }
+    .neon-card {
+      position:relative;
+      margin:60px auto 34px auto;
+      max-width:400px; text-align:center;
+      padding:2.2em 1.1em 2.2em 1.1em;
+      background:#fffefaee;
+      border-radius:24px;
+      box-shadow:0 7px 34px #e7bcf545;
+      z-index:2;
+    }
+    /* Neon/Rainbow Animated Border */
+    .neon-card:before {
+      content:"";
+      position:absolute;left:-5px;top:-5px;right:-5px;bottom:-5px;z-index:-1;
+      border-radius:30px;
+      padding:0;
+      background:linear-gradient(270deg,#f971ff,#34f1fc,#ffe261,#56ff74,#ff54dd,#f971ff);
+      background-size:1200% 1200%;
+      filter:blur(2.2px);
+      animation:neonmove 6s ease-in-out infinite;
+    }
+    @keyframes neonmove{
+      0%{background-position:100% 50%;}
+      50%{background-position:0% 50%;}
+      100%{background-position:100% 50%;}
+    }
+    .rainbow-text {
+      font-size:2em;
+      font-family:'Brush Script MT',cursive;
+      font-weight:bold;
+      background:linear-gradient(90deg,#f971ff,#34f1fc,#ffd261,#ff56a9,#54ddff,#f971ff 90%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:rainbow 7s linear infinite;
+      letter-spacing:1.7px;
+      margin-bottom:.69em;
+      text-shadow: 0 0 16px #fd53fe,0 0 8px #f97abf88;
+    }
+    @keyframes rainbow {
+      to{background-position:360px;}
+    }
+    .msg {font-size:1.13em;color:#68338c;margin:1.3em 0;}
+    .celebrate-btn {
+      margin-top:1.5em;padding:15px 42px;font-size:1.17em;
+      background:#fca7ff; color:#5e006a;
+      border:none; border-radius:36px; font-weight:bold;
+      cursor:pointer;
+      box-shadow:0 0 22px #f461f9,0 2px 8px #b95ab590;
+      outline:none;
+      border:2.5px solid #fff;
+      transition:.2s;
+    }
+    .celebrate-btn:hover {
+      background:#24cad3;
+      color:#fdfff0;
+      box-shadow:0 0 44px #00fff7,0 0 12px #ef5ad9;
+      border-color:#fbf600;
+      letter-spacing:1.3px;
+      animation: btn-glow 1.2s infinite alternate;
+    }
+    @keyframes btn-glow {
+      0% { box-shadow:0 0 22px #10f6ff,0 0 8px #f7caff;}
+      100%{ box-shadow:0 0 38px #ffe53c,0 0 15px #ff36b4;}
+    }
+    @media(max-width:460px){.neon-card{max-width:97vw;}}
+  </style>
+</head>
+<body>
+  <div class="neon-card">
+    <div class="rainbow-text">Let's Celebrate, Siddhant!</div>
+    <div class="msg">
+      Dazzle the day with your bright smile, dance in the neon glow, and let happiness rain like sunshine!<br>
+      Enjoy this mega neon/rainbow animated card section!<br>
+      <span style="font-size:.97em;color:#9578e3">(Click &amp; hover Celebrate button for effect)</span>
+    </div>
+    <button class="celebrate-btn" onclick="alert('Time for a Neon Birthday Celebration! 🎉🌈')">
+      🎉 Celebrate!
+    </button>
+  </div>
+</body>
+</html>
