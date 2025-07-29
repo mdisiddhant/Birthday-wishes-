@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Birthday Quiz | Siddhant</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <style>
+    body {background:linear-gradient(120deg,#e4fcff 55%,#ffe8fa 100%);
+      min-height:100vh;margin:0;font-family:'Segoe UI',cursive,sans-serif;}
+    .container {max-width:430px;margin:58px auto 30px auto;
+      background:#fffefaee;border-radius:17px;box-shadow:0 7px 26px #d7c8fb30;
+      text-align:center;padding:2.2em 1em 2.8em 1em;}
+    h1 {font-family:'Brush Script MT',cursive;font-size:2em;color:#d02595;}
+    .quizQ {margin:1.5em 0 1em 0;font-size:1.05em;font-weight:500;color:#5231a3;}
+    .option {display:block;margin:.5em auto;padding:11px 18px;background:#faf7ff;border-radius:8px;border:1.1px solid #e3b3f7;font-size:1em;cursor:pointer;transition:.13s;}
+    .option:hover {background:#ffe1fe;}
+    .submit-btn {margin:1.7em auto;padding:14px 40px;background:#34f1bc;color:#09572e;border-radius:13px;border:none;font-weight:bold;font-size:1.09em;cursor:pointer;}
+    .submit-btn:active {background:#ffd166;color:#af5300;}
+    .score {margin-top:2.2em;font-size:1.18em;color:#8e22cc;}
+    .note{font-size:1em;margin-top:1.7em;color:#728;}
+    @media(max-width:460px){.container{max-width:97vw;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎯 Birthday Quiz Game</h1>
+    <form id="quizForm">
+      <div class="quizQ">
+        1. When is Siddhant's birthday?
+        <label class="option"><input type="radio" name="q1" value="0"> 15 August</label>
+        <label class="option"><input type="radio" name="q1" value="1"> 29 July</label>
+        <label class="option"><input type="radio" name="q1" value="0"> 5 January</label>
+      </div>
+      <div class="quizQ">
+        2. The perfect birthday treat is…
+        <label class="option"><input type="radio" name="q2" value="0"> Pizza</label>
+        <label class="option"><input type="radio" name="q2" value="1"> Cake</label>
+        <label class="option"><input type="radio" name="q2" value="0"> Salad</label>
+      </div>
+      <div class="quizQ">
+        3. Siddhant's zodiac sign?
+        <label class="option"><input type="radio" name="q3" value="1"> Leo 🦁</label>
+        <label class="option"><input type="radio" name="q3" value="0"> Aquarius</label>
+        <label class="option"><input type="radio" name="q3" value="0"> Virgo</label>
+      </div>
+      <div class="quizQ">
+        4. What should you always bring to a birthday?
+        <label class="option"><input type="radio" name="q4" value="0"> Homework</label>
+        <label class="option"><input type="radio" name="q4" value="1"> Smiles & wishes!</label>
+        <label class="option"><input type="radio" name="q4" value="0"> Umbrella</label>
+      </div>
+      <button class="submit-btn" type="submit">Check Score!</button>
+    </form>
+    <div class="score" id="scoreBlock"></div>
+    <div class="note">
+      Questions/answers आप अपनी पसंद से add/edit कर सकते हैं!<br>
+      और भी quizzes, puzzles, games इसी structure में बना सकते हैं.
+    </div>
+    
