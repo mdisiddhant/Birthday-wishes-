@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Emoji Rain + Stars | Siddhant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    body { background:linear-gradient(120deg,#d9f6ff 45%,#f9dafc 100%);
+      min-height:100vh; margin:0; font-family:'Segoe UI',cursive; overflow-x:hidden;}
+    .container { background:#fffefaee; max-width:400px; margin:50px auto 36px auto;
+      border-radius:16px; box-shadow:0 6px 32px #94cccf44; text-align:center;
+      padding:1.6em 1em 2.3em 1em; position:relative; z-index:2;}
+    h1 { color:#fe5e87; font-family: 'Brush Script MT',cursive; font-size:2em;}
+    .msg{margin-bottom:1.5em;color:#5f2681;font-size:1.07em;}
+    #emoji-rain{ pointer-events:none; position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:1;}
+    #svg-stars{position:fixed; bottom:0; left:0; width:100vw; height:180px; z-index:0;}
+    @media(max-width:450px){.container{max-width:97vw;}}
+  </style>
+</head>
+<body>
+  <!-- Emoji Rain -->
+  <div id="emoji-rain"></div>
+  <!-- Animated SVG Stars/Fireflies -->
+  <svg id="svg-stars"></svg>
+
+  <div class="container">
+    <h1>⭐ Emoji Rain & Stars ⭐</h1>
+    <div class="msg">
+      Happy Birthday Siddhant! <br>
+      Enjoy falling emojis and sparkling firefly stars <br>
+      (Try reloading or waiting a bit!)
+    </div>
+  </div>
+
+  <script>
+    // === Emoji Rain ===
+    const emojis = ["🎂","🥳","🎈","🎉","💖","✨","🎁","😁","🍰"];
+    const emojiRain = document.getElementById("emoji-rain");
+    function dropEmoji() {
+      const em = document.createElement("span");
+      em.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      em.style.position = "absolute";
+      em.style.fontSize = (24+Math.random()*26) + "px";
+      em.style.left = Math.random()* 96 + "vw";
+      em.style.top = "-25px";
+      em.style.opacity = 0.7+Math.random()*0.3;
+      emojiRain.appendChild(em);
+
+      let dist = window.innerHeight + 40 + Math.random()*80;
+      let duration = 2.5 + Math.random()*1.6;
+      em.animate([
+        { transform: "translateY(0px)" },
+        { transform: `translateY(${dist}px)` }
+      ], { duration: duration*1000, fill: "forwards" });
+
+      setTimeout(() => em.remove(), duration*1000);
+    }
+    setInterval(dropEmoji, 149);
+
+    // === SVG Stars | Fireflies (bottom, fade in/out/move) ===
+    const svg = document.getElementById("svg-stars");
+    function createStars(count) {
+      svg.innerHTML = "";
+      for(let i=0;i<count;i++){
+        let cx = Math.random()*window.innerWidth;
+        let cy = 60+Math.random()*100;
+        let r = 1.2+Math.random()*2.2;
+        let star = document.createElementNS("http://www.w3.org/2000/svg","circle");
+        star.setAttribute("cx",cx); star.setAttribute("cy",cy); star.setAttribute("r",r);
+        star.style.fill = ["#ffbbea","#ffe97b","#ec99fd","#e0fdff","#e3fcbd"][Math.floor(Math.random()*5)];
+        star.style.opacity = .6 + Math.random()*0.4;
+        svg.appendChild(star);
+
+        let animTime = 2+Math.random()*4;
+        setTimeout(()=>{
+          star.animate([
+            {opacity:star.style.opacity, cy:cy},
+            {opacity:0.15+Math.random()*0.2, cy:cy-14-Math.random()*42},
+            {opacity:star.style.opacity, cy:cy}
+          ],{
+            duration: animTime*1000, iterations:Infinity, direction:'alternate', easing:'ease-in-out'
+          });
+        }, i*70);
+      }
+    }
+    createStars(24);
+    // Responsive re-draw on resize
+    window.addEventListener('resize',()=>createStars(24));
+  </script>
+</body>
+</html>
