@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>WhatsApp Share + Copy | Siddhant</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <style>
+    body { background:linear-gradient(110deg,#e4f8fa 50%,#f7d5f7 100%);
+      min-height:100vh; margin:0; font-family:'Segoe UI',cursive,sans-serif;}
+    .container{max-width:410px;margin:52px auto 34px auto;
+      background:#fffefaee;border-radius:17px;box-shadow:0 7px 28px #bbfffa18;
+      text-align:center;padding:2.1em 1em 2.3em 1em;}
+    h1{font-family:'Brush Script MT',cursive;font-size:2em;color:#3a83ce;}
+    .msg-block{margin:1.5em 0;}
+    .bday-msg{
+      border:1.2px solid #d1bbff;background:#faf6ff;border-radius:14px;
+      font-size:1.09em;padding:1.2em 1em;margin-bottom:1.3em;color:#7b2882;
+    }
+    .share-btn{display:inline-block;margin:.9em 11px 0 11px;
+      background:#25d366;color:#fff;font-weight:bold;font-size:1.11em;
+      padding:13px 28px;border-radius:13px;border:none;cursor:pointer;
+      transition:.18s;}
+    .share-btn:active{background:#1ebea5;}
+    .copy-btn{display:inline-block;background:#ffd166;color:#632711;padding:12px 24px;margin:.9em 11px 0 11px;
+      border:none;border-radius:13px;font-size:1.1em;font-weight:bold;cursor:pointer;transition:.17s;}
+    .copy-btn:active{background:#ffb700;}
+    .toast{
+      display:none;position:fixed;z-index:111;left:60%;top:29px;
+      transform:translateX(-50%);
+      background:#26d565;color:#fff;font-weight:bold;
+      padding:10px 19px;border-radius:25px;box-shadow:0 2px 12px #adf1d999;
+      animation:toastshow 2s;
+      font-size:1.08em;
+    }
+    @keyframes toastshow{0%{opacity:0;}20%{opacity:1;}80%{opacity:1;}100%{opacity:0;}}
+    @media(max-width:450px){.container{max-width:97vw;}.toast{left:50%;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎉 WhatsApp Share + Copy</h1>
+    <div class="msg-block">
+      <div class="bday-msg" id="bdayMsg">
+        Happy Birthday Siddhant! 🎂🎉<br>
+        Wishing you a year filled with joy, love, and endless success. Stay awesome! 🌈
+      </div>
+      <button class="share-btn" onclick="shareWhatsApp()">WhatsApp पर भेजें</button>
+      <button class="copy-btn" onclick="copyMessage()">Copy Message</button>
+    </div>
+    <div class="toast" id="toast">Copied!</div>
+    <div style="margin-top:2.1em;color:#888;font-size:.96em;">
+      *WhatsApp सिर्फ मोबाइल/ब्राउजर पर खोलने से auto share करेगा<br>
+      (Copy to clipboard PC/Phone दोनों में instantly काम करता है!)
+    </div>
+  </div>
+  <script>
+    // WhatsApp Share Logic
+    function shareWhatsApp(){
+      let msg = document.getElementById("bdayMsg").innerText;
+      let url = "https://wa.me/?text=" + encodeURIComponent(msg);
+      window.open(url,"_blank");
+    }
+    // Copy to Clipboard + Toast
+    function copyMessage(){
+      let txt = document.getElementById("bdayMsg").innerText;
+      navigator.clipboard.writeText(txt).then(()=>{
+        let t = document.getElementById("toast");
+        t.style.display="block";
+        setTimeout(()=>{t.style.display="none";},1600);
+      });
+    }
+  </script>
+</body>
+</html>
