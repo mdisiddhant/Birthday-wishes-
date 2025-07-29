@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Poll Game | Siddhant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    body {background:linear-gradient(110deg,#defaff 60%,#fbd0ff 100%);min-height:100vh;margin:0;font-family:'Segoe UI',cursive;}
+    .container{background:#fffdfaee;max-width:420px;border-radius:17px;box-shadow:0 6px 30px #c7eae944;
+      margin:55px auto 34px auto;text-align:center;padding:2.1em 1.1em 2.3em 1.1em;}
+    h1{color:#ff6b81;font-size:2em;font-family:'Brush Script MT',cursive;}
+    .poll-q{font-size:1.13em;font-weight:bold;margin:1.1em auto 1.2em auto;color:#7734ba;}
+    .poll-opt{display:flex;align-items:center;justify-content:space-between; margin:0.6em 0;}
+    .poll-btn{
+      background:#8c6bfa;color:#fff;border:none;border-radius:7px;padding:9px 14px;margin-left:7px;font-size:1em;cursor:pointer;font-weight:bold;
+    }
+    .poll-bar-wrap{flex:1;background:#eedffc;height:15px;border-radius:6px;margin:0 9px;overflow:hidden;}
+    .poll-bar{height:100%;background:#fe84b9;width:10%;transition:.44s;}
+    .vote-count{font-size:.99em;margin-left:6px;color:#9a387f;}
+    .reset-btn{margin-top:1.4em;background:#eedfff;color:#7432a7;border-radius:12px;padding:7px 29px;border:none;font-weight:bold;cursor:pointer;}
+    @media(max-width:450px){.container{max-width:97vw;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🗳️ Birthday Poll Game</h1>
+    <div class="poll-q">How should we celebrate this year?</div>
+    <div id="pollArea"></div>
+    <button class="reset-btn" onclick="resetPoll()">Reset All Votes</button>
+  </div>
+  <script>
+    // --- Poll Data (Options Editable!) ---
+    const q = "How should we celebrate this year?";
+    const opts = [
+      "🎉 House Party",
+      "🌳 Picnic/Outing",
+      "🎬 Movie Marathon",
+      "🎂 Cake & Games Night",
+      "🎵 Music & Dance Party",
+      "🤪 Crazy Challenge",
+      "📸 Photo Shoot"
+    ];
+    // Poll Counts
+    const key="siddhant_poll";
+    let counts = JSON.parse(localStorage.getItem(key) || "[]");
+    if(counts.length !== opts.length) {
+      counts = Array(opts.length).fill(0);
+      localStorage.setItem(key,JSON.stringify(counts));
+    }
+    function vote(i) {
+      counts[i]++;
+      localStorage.setItem(key,JSON.stringify(counts));
+      renderPoll();
+    }
+    function renderPoll() {
+      const total = counts.reduce((a,b)=>a+b,0) || 1;
+      let html = "";
+      opts.forEach((opt,i)=>{
+        const cnt = counts[i];
+        const pct = Math.round(cnt/total*100);
+        html += `<div class="poll-opt">
+          <span>${opt}</span>
+          <div class="poll-bar-wrap">
+            <div class="poll-bar" style="width:${pct}%;"></div>
+          </div>
+          <button class="poll-btn" onclick="vote(${i})">Vote</button>
+          <span class="vote-count">${cnt}</span>
+        </div>`;
+      });
+      document.getElementById("pollArea").innerHTML = html;
+    }
+    function resetPoll(){
+      counts = Array(opts.length).fill(0);
+      localStorage.setItem(key,JSON.stringify(counts));
+      renderPoll();
+    }
+    renderPoll();
+    // Option to allow just 1 vote/user: add localStorage flag, or allow multiple votes (current behaviour)
+  </script>
+</body>
+</html>
