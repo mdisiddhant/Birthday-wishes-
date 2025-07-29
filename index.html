@@ -2,24 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Birthday Mega Features Index 🎉</title>
+  <title>Cosmic Birthday Features 🚀</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600&family=Rubik+Moonrocks&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #e249d4;
-      --secondary: #5b0cb8;
-      --accent: #ff81eb;
-      --glass: rgba(255, 254, 250, 0.85);
-      --glass-border: rgba(255, 255, 255, 0.3);
+      --primary: #00e5ff;
+      --secondary: #ff4081;
+      --tertiary: #7c4dff;
+      --space-dark: #0b0b2d;
+      --space-purple: #4b1857;
+      --neon-pink: #ff2a6d;
+      --neon-blue: #05d9e8;
     }
     
     body {
       margin: 0;
-      background: linear-gradient(145deg, #f3e7f7 60%, #fdbedd 100%);
-      font-family: 'Segoe UI', cursive, sans-serif;
-      color: #4b1857;
+      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      font-family: 'Poppins', sans-serif;
+      color: white;
       min-height: 100vh;
       overflow-x: hidden;
+    }
+    
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
     
     /* Glassmorphism Effect */
@@ -27,10 +40,10 @@
       max-width: 800px;
       margin: 32px auto 44px auto;
       padding: 2.2rem 1.1rem 2.9rem 1.1rem;
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
+      background: rgba(255, 254, 250, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       border-radius: 19px;
-      box-shadow: 0 6px 36px #f079df34;
+      box-shadow: 0 8px 32px rgba(151, 65, 252, 0.2);
       text-align: center;
       position: relative;
       z-index: 2;
@@ -38,67 +51,23 @@
       -webkit-backdrop-filter: blur(12px);
     }
     
-    /* Animated Gradient Border */
-    .index-container::before {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      background: linear-gradient(45deg, 
-        #ff81eb, #ffb3fd, #badcff, #ffb3fd, #ff81eb);
-      background-size: 400% 400%;
-      z-index: -1;
-      border-radius: 21px;
-      animation: gradientBorder 8s ease infinite;
-      opacity: 0.7;
-    }
-    
-    @keyframes gradientBorder {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    
+    /* Glow Text - Space Neon Style */
     h1 {
-      font-family: 'Brush Script MT', cursive, sans-serif;
-      color: var(--primary);
-      font-size: 2.3em;
-      letter-spacing: 1.3px;
-      text-shadow: 0 2px 14px #fa8fefbb, 0 0 5px #fb8;
+      font-family: 'Orbitron', sans-serif;
+      color: var(--neon-blue);
+      font-size: 2.8em;
+      letter-spacing: 3px;
+      text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
       margin-bottom: .7em;
-      position: relative;
+      animation: glowPulse 2s ease-in-out infinite alternate;
     }
     
-    /* Reflection Animation */
-    h1::after {
-      content: 'Welcome, Siddhant!';
-      position: absolute;
-      left: 0;
-      bottom: -25px;
-      width: 100%;
-      height: 20px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      transform: scaleY(-1);
-      opacity: 0.5;
+    @keyframes glowPulse {
+      from { text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue); }
+      to { text-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-blue), 0 0 45px #d300ff; }
     }
     
-    /* Interactive Hover Effects */
-    .features-list li {
-      transition: all 0.3s ease;
-      transform-style: preserve-3d;
-    }
-    
-    .features-list li:hover {
-      background: #f9c8fa;
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 5px 15px rgba(251, 143, 239, 0.3);
-    }
-    
+    /* 3D Floating Cards with Hover */
     .features-list {
       text-align: left;
       columns: 2 250px;
@@ -106,78 +75,118 @@
       font-size: 1.04em;
       padding: 0;
       margin: 0 0 18px 0;
+      perspective: 1000px;
     }
     
     .features-list li {
-      background: #f9d8fa90;
+      background: rgba(155, 81, 224, 0.15);
       border-radius: 13px;
-      margin: 0 0 11px 0;
-      padding: 7px 14px;
-      list-style-type: '🎈 ';
+      margin: 0 0 15px 0;
+      padding: 12px 18px;
+      list-style-type: '🚀 ';
       break-inside: avoid;
-    }
-    
-    .features-list a {
-      color: var(--secondary);
-      text-decoration: none;
-      transition: color 0.13s;
-      font-weight: 500;
-      display: block;
-    }
-    
-    .features-list a:hover { 
-      color: var(--primary);
-      text-decoration: underline;
-    }
-    
-    .about {
-      font-size: 1.12em;
-      margin: .2em 0 1.7em 0;
-      color: #664;
-    }
-    
-    .note {
-      font-size: .98em;
-      color: #984eaa;
-      margin: 12px 0 1.6em 0;
-    }
-    
-    @media (max-width: 768px) {
-      .index-container {
-        max-width: 96vw;
-        padding: 1rem 5vw;
-      }
-      .features-list {
-        columns: 1;
-      }
-    }
-    
-    .banner {
-      margin-bottom: 1.1em;
-      border-radius: 15px;
-      background: linear-gradient(91deg, #ff81ebcc, #badcffcc);
-      color: #304b68;
-      padding: .35em 0;
-      font-size: 1.14em;
-      font-weight: 600;
-      box-shadow: 0 2px 18px #f3aefd44;
+      transition: all 0.4s ease;
+      transform-style: preserve-3d;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       position: relative;
       overflow: hidden;
     }
     
-    /* Floating Emoji/Balloon Background */
-    .floating-emoji {
-      position: fixed;
-      font-size: 24px;
-      animation: floatUp 15s linear infinite;
+    .features-list li::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+      );
+      transition: 0.5s;
+    }
+    
+    .features-list li:hover {
+      transform: translateY(-8px) rotateX(5deg) rotateY(5deg);
+      box-shadow: 0 15px 30px rgba(123, 31, 162, 0.4);
+      background: rgba(155, 81, 224, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .features-list li:hover::before {
+      left: 100%;
+    }
+    
+    /* Hover Light Effect on Buttons */
+    .features-list a {
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-weight: 500;
+      display: block;
+      position: relative;
       z-index: 1;
-      user-select: none;
+    }
+    
+    .features-list a:hover { 
+      color: var(--neon-pink);
+      text-shadow: 0 0 8px var(--neon-pink);
+    }
+    
+    /* Shiny Border Animation */
+    .banner {
+      margin-bottom: 1.5em;
+      border-radius: 15px;
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
+      padding: .6em 0;
+      font-size: 1.2em;
+      font-weight: 600;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid transparent;
+      font-family: 'Rubik Moonrocks', cursive;
+      letter-spacing: 1px;
+    }
+    
+    .banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        transparent, transparent, transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent, transparent, transparent
+      );
+      transform: rotate(30deg);
+      animation: shine 6s infinite;
+    }
+    
+    @keyframes shine {
+      0% { transform: rotate(30deg) translate(-30%, -30%); }
+      100% { transform: rotate(30deg) translate(30%, 30%); }
+    }
+    
+    /* Particle Background Animation */
+    .particle {
+      position: fixed;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      animation: floatParticle linear infinite;
+      z-index: 1;
       pointer-events: none;
     }
     
-    @keyframes floatUp {
+    @keyframes floatParticle {
       0% {
-        transform: translateY(100vh) rotate(0deg);
+        transform: translate(0, 0) rotate(0deg);
         opacity: 0;
       }
       10% {
@@ -187,75 +196,112 @@
         opacity: 1;
       }
       100% {
-        transform: translateY(-100px) rotate(360deg);
+        transform: translate(100px, -100vh) rotate(360deg);
         opacity: 0;
       }
     }
     
-    /* Search/Filter Feature */
-    .search-container {
-      margin: 0 auto 20px auto;
-      max-width: 80%;
-      position: relative;
-    }
-    
-    #featureSearch {
-      width: 100%;
-      padding: 12px 20px;
-      border: 1px solid #e0a0e0;
-      border-radius: 25px;
-      font-size: 16px;
-      background: rgba(255, 255, 255, 0.8);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s;
-    }
-    
-    #featureSearch:focus {
-      outline: none;
-      box-shadow: 0 2px 15px rgba(226, 73, 212, 0.3);
-      border-color: var(--primary);
-    }
-    
-    /* Scroll Reveal Animation */
-    .features-list li {
+    /* Confetti Rain */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: #f00;
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      z-index: 1;
+      animation: confettiFall 5s linear infinite;
     }
     
-    .features-list li.visible {
-      opacity: 1;
-      transform: translateY(0);
+    @keyframes confettiFall {
+      0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
     }
     
-    /* Tilt.js / Hover3D Effect */
-    .tilt-effect {
-      transition: transform 0.3s ease;
+    /* Shadow and Depth */
+    .index-container {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
+                  inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
     
-    .tilt-effect:hover {
-      transform: perspective(500px) rotateX(5deg) rotateY(5deg);
+    /* Animated Typing Effect */
+    .typing-text {
+      display: inline-block;
+      overflow: hidden;
+      border-right: 3px solid var(--neon-blue);
+      white-space: nowrap;
+      margin: 0 auto;
+      letter-spacing: 2px;
+      animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+    }
+    
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: var(--neon-blue) }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .index-container {
+        max-width: 90vw;
+        padding: 1.5rem;
+      }
+      .features-list {
+        columns: 1;
+      }
+      h1 {
+        font-size: 2em;
+      }
+    }
+    
+    /* Space-themed elements */
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle var(--duration) infinite ease-in-out;
+    }
+    
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <!-- Floating Emoji Background -->
-  <div id="emojiContainer"></div>
+  <!-- Space Background Elements -->
+  <div class="stars" id="stars"></div>
+  <div id="particles"></div>
+  <div id="confetti-container"></div>
   
-  <div class="index-container tilt-effect">
-    <div class="banner">🎂 Birthday Megaproject – 100 Interactive Features Demo</div>
-    <h1>Welcome, Siddhant!</h1>
+  <div class="index-container">
+    <div class="banner">🚀 Cosmic Birthday Feature Explorer</div>
+    <h1><span class="typing-text">Welcome, Siddhant!</span></h1>
     <div class="about">
-      Explore &amp; build every module – Animation, Games, Guestbook, Sharing, Polls, PWA &amp; more.<br>
-      <span style="color:#b2777b">हर फीचर को अलग HTML में बनाएं, उस फ़ाइल का लिंक यहाँ index-page में <b>href</b> में देते जाएँ।</span>
+      Explore every interactive module in this stellar collection<br>
+      <span style="color:#a5d8ff">Click any feature to launch the experience</span>
     </div>
     
-    <!-- Search/Filter Feature -->
-    <div class="search-container">
-      <input type="text" id="featureSearch" placeholder="🔍 Search features..." aria-label="Search features">
-    </div>
-    
-    <ul class="features-list" id="featuresList">
+    <ul class="features-list">
       <li><a href="phase1_greeting.html" target="_blank">Glowing Text, Balloons & Confetti</a></li>
       <li><a href="phase2_countdown.html" target="_blank">Countdown, Age Reveal, Zodiac</a></li>
       <li><a href="guestbook_wishwall.html" target="_blank">Guestbook & Realtime Wishes Wall</a></li>
@@ -285,108 +331,77 @@
       <li><a href="age_calculator.html" target="_blank">Age Calculator + Birthday Countdown</a></li>
       <li><a href="rsvp_event.html" target="_blank">Event RSVP (Birthday Attendance)</a></li>
       <li><a href="visitor_map.html" target="_blank">Visitor Location Map</a></li>
-      <li><a href="glassmorphism_effect.html" target="_blank">Glassmorphism Effect (Frosted Glass)</a></li>
-      <li><a href="interactive_hover.html" target="_blank">Interactive Hover Effects</a></li>
-      <li><a href="gradient_border.html" target="_blank">Animated Gradient Border</a></li>
-      <li><a href="floating_emoji.html" target="_blank">Floating Emoji/Balloon Background</a></li>
-      <li><a href="scroll_reveal.html" target="_blank">Scroll Reveal Animation</a></li>
-      <li><a href="reflection_shine.html" target="_blank">Reflection / Shine Animation</a></li>
-      <li><a href="tilt_hover3d.html" target="_blank">Tilt.js / Hover3D Effects</a></li>
-      <li><a href="search_filter.html" target="_blank">Search/Filter Features List</a></li>
     </ul>
     
     <div class="note">
-      Tip: Click on any feature to open it in a new tab. Build them one by one!
+      Tip: Click any feature to launch it in a new tab!
     </div>
   </div>
 
   <script>
-    // Floating Emoji Background
-    const emojis = ['🎈', '🎉', '🎁', '🎂', '🎊', '✨', '🥳', '🎇', '🎆', '💝'];
-    const emojiContainer = document.getElementById('emojiContainer');
-    
-    function createEmoji() {
-      const emoji = document.createElement('div');
-      emoji.className = 'floating-emoji';
-      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-      
-      // Random position and animation duration
-      emoji.style.left = Math.random() * 100 + 'vw';
-      emoji.style.animationDuration = (Math.random() * 10 + 5) + 's';
-      emoji.style.fontSize = (Math.random() * 20 + 16) + 'px';
-      
-      emojiContainer.appendChild(emoji);
-      
-      // Remove emoji after animation completes
-      setTimeout(() => {
-        emoji.remove();
-      }, 15000);
+    // Create twinkling stars
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 200; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.width = `${Math.random() * 3}px`;
+      star.style.height = star.style.width;
+      star.style.left = `${Math.random() * 100}vw`;
+      star.style.top = `${Math.random() * 100}vh`;
+      star.style.setProperty('--duration', `${Math.random() * 5 + 3}s`);
+      starsContainer.appendChild(star);
     }
     
-    // Create initial emojis
-    for (let i = 0; i < 20; i++) {
-      setTimeout(createEmoji, i * 300);
+    // Create floating particles
+    const particles = ['✦', '✧', '✵', '✸', '✹', '★', '☆', '✺'];
+    const particleContainer = document.getElementById('particles');
+    for (let i = 0; i < 30; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.textContent = particles[Math.floor(Math.random() * particles.length)];
+      particle.style.left = `${Math.random() * 100}vw`;
+      particle.style.top = `${Math.random() * 100}vh`;
+      particle.style.fontSize = `${Math.random() * 10 + 10}px`;
+      particle.style.animationDuration = `${Math.random() * 10 + 5}s`;
+      particle.style.color = `hsl(${Math.random() * 60 + 180}, 100%, 70%)`;
+      particleContainer.appendChild(particle);
     }
     
-    // Continue creating emojis
-    setInterval(createEmoji, 1000);
-    
-    // Search/Filter Functionality
-    const featureSearch = document.getElementById('featureSearch');
-    const featuresList = document.getElementById('featuresList');
-    const features = featuresList.getElementsByTagName('li');
-    
-    featureSearch.addEventListener('input', () => {
-      const searchTerm = featureSearch.value.toLowerCase();
-      
-      Array.from(features).forEach(feature => {
-        const text = feature.textContent.toLowerCase();
-        if (text.includes(searchTerm)) {
-          feature.style.display = '';
-        } else {
-          feature.style.display = 'none';
-        }
-      });
-    });
-    
-    // Scroll Reveal Animation
-    const featureItems = document.querySelectorAll('.features-list li');
-    
-    function checkVisibility() {
-      featureItems.forEach(item => {
-        const rect = item.getBoundingClientRect();
-        const isVisible = (rect.top <= window.innerHeight * 0.8);
+    // Create occasional confetti
+    function createConfetti() {
+      const colors = ['#ff2a6d', '#05d9e8', '#d300ff', '#ffcc00', '#00ff88'];
+      const container = document.getElementById('confetti-container');
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = `${Math.random() * 100}vw`;
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.width = `${Math.random() * 8 + 4}px`;
+        confetti.style.height = `${Math.random() * 8 + 4}px`;
+        confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        confetti.style.animationDelay = `${Math.random() * 2}s`;
+        container.appendChild(confetti);
         
-        if (isVisible) {
-          item.classList.add('visible');
-        }
-      });
+        setTimeout(() => {
+          confetti.remove();
+        }, 5000);
+      }
     }
     
-    // Initial check
-    checkVisibility();
+    // Initial confetti burst
+    setTimeout(createConfetti, 1000);
     
-    // Check on scroll
-    window.addEventListener('scroll', checkVisibility);
+    // Periodic confetti
+    setInterval(createConfetti, 10000);
     
-    // Tilt.js / Hover3D Effect
-    const container = document.querySelector('.index-container');
-    
-    container.addEventListener('mousemove', (e) => {
-      const x = e.clientX - container.getBoundingClientRect().left;
-      const y = e.clientY - container.getBoundingClientRect().top;
-      
-      const centerX = container.offsetWidth / 2;
-      const centerY = container.offsetHeight / 2;
-      
-      const angleX = (y - centerY) / 20;
-      const angleY = (centerX - x) / 20;
-      
-      container.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
-    });
-    
-    container.addEventListener('mouseleave', () => {
-      container.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
     });
   </script>
 </body>
