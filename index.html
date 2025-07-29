@@ -5,53 +5,257 @@
   <title>Birthday Mega Features Index 🎉</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    :root {
+      --primary: #e249d4;
+      --secondary: #5b0cb8;
+      --accent: #ff81eb;
+      --glass: rgba(255, 254, 250, 0.85);
+      --glass-border: rgba(255, 255, 255, 0.3);
+    }
+    
     body {
-      margin:0;background:linear-gradient(145deg,#f3e7f7 60%,#fdbedd 100%);
-      font-family:'Segoe UI',cursive,sans-serif;color:#4b1857;
+      margin: 0;
+      background: linear-gradient(145deg, #f3e7f7 60%, #fdbedd 100%);
+      font-family: 'Segoe UI', cursive, sans-serif;
+      color: #4b1857;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
+    
+    /* Glassmorphism Effect */
     .index-container {
-      max-width:540px;margin:32px auto 44px auto;padding:2.2rem 1.1rem 2.9rem 1.1rem;
-      background:#fffefaee; border-radius:19px; box-shadow:0 6px 36px #f079df34;
-      text-align:center;position:relative;z-index:2;
+      max-width: 800px;
+      margin: 32px auto 44px auto;
+      padding: 2.2rem 1.1rem 2.9rem 1.1rem;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 19px;
+      box-shadow: 0 6px 36px #f079df34;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
+    
+    /* Animated Gradient Border */
+    .index-container::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, 
+        #ff81eb, #ffb3fd, #badcff, #ffb3fd, #ff81eb);
+      background-size: 400% 400%;
+      z-index: -1;
+      border-radius: 21px;
+      animation: gradientBorder 8s ease infinite;
+      opacity: 0.7;
+    }
+    
+    @keyframes gradientBorder {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
     h1 {
-      font-family:'Brush Script MT',cursive,sans-serif;
-      color:#e249d4;font-size:2.3em;letter-spacing:1.3px;
-      text-shadow:0 2px 14px #fa8fefbb,0 0 5px #fb8;
-      margin-bottom:.7em;
+      font-family: 'Brush Script MT', cursive, sans-serif;
+      color: var(--primary);
+      font-size: 2.3em;
+      letter-spacing: 1.3px;
+      text-shadow: 0 2px 14px #fa8fefbb, 0 0 5px #fb8;
+      margin-bottom: .7em;
+      position: relative;
     }
-    .features-list {
-      text-align:left;columns:2 250px;gap:2em;
-      font-size:1.04em;padding:0;margin:0 0 18px 0;
+    
+    /* Reflection Animation */
+    h1::after {
+      content: 'Welcome, Siddhant!';
+      position: absolute;
+      left: 0;
+      bottom: -25px;
+      width: 100%;
+      height: 20px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      transform: scaleY(-1);
+      opacity: 0.5;
     }
+    
+    /* Interactive Hover Effects */
     .features-list li {
-      background:#f9d8fa90; border-radius:13px;
-      margin:0 0 11px 0;padding:7px 14px;list-style-type:'🎈 ';
-      transition:background 0.15s;
+      transition: all 0.3s ease;
+      transform-style: preserve-3d;
     }
+    
+    .features-list li:hover {
+      background: #f9c8fa;
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 5px 15px rgba(251, 143, 239, 0.3);
+    }
+    
+    .features-list {
+      text-align: left;
+      columns: 2 250px;
+      gap: 2em;
+      font-size: 1.04em;
+      padding: 0;
+      margin: 0 0 18px 0;
+    }
+    
+    .features-list li {
+      background: #f9d8fa90;
+      border-radius: 13px;
+      margin: 0 0 11px 0;
+      padding: 7px 14px;
+      list-style-type: '🎈 ';
+      break-inside: avoid;
+    }
+    
     .features-list a {
-      color:#5b0cb8;text-decoration:none;transition:color 0.13s;
-      font-weight:500;
+      color: var(--secondary);
+      text-decoration: none;
+      transition: color 0.13s;
+      font-weight: 500;
+      display: block;
     }
-    .features-list a:hover { color:#e239a9;text-decoration:underline;}
-    .about {font-size:1.12em;margin:.2em 0 1.7em 0;color:#664;}
-    .note{font-size:.98em;color:#984eaa;margin:12px 0 1.6em 0;}
-    @media(max-width:560px){
-      .index-container{max-width:96vw;padding:1rem 5vw;}
-      .features-list{columns:1;}
+    
+    .features-list a:hover { 
+      color: var(--primary);
+      text-decoration: underline;
     }
-    .banner{margin-bottom:1.1em;border-radius:15px;background:linear-gradient(91deg,#ff81ebcc,#badcffcc);color:#304b68;padding:.35em 0;font-size:1.14em;font-weight:600;box-shadow:0 2px 18px #f3aefd44;}
+    
+    .about {
+      font-size: 1.12em;
+      margin: .2em 0 1.7em 0;
+      color: #664;
+    }
+    
+    .note {
+      font-size: .98em;
+      color: #984eaa;
+      margin: 12px 0 1.6em 0;
+    }
+    
+    @media (max-width: 768px) {
+      .index-container {
+        max-width: 96vw;
+        padding: 1rem 5vw;
+      }
+      .features-list {
+        columns: 1;
+      }
+    }
+    
+    .banner {
+      margin-bottom: 1.1em;
+      border-radius: 15px;
+      background: linear-gradient(91deg, #ff81ebcc, #badcffcc);
+      color: #304b68;
+      padding: .35em 0;
+      font-size: 1.14em;
+      font-weight: 600;
+      box-shadow: 0 2px 18px #f3aefd44;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Floating Emoji/Balloon Background */
+    .floating-emoji {
+      position: fixed;
+      font-size: 24px;
+      animation: floatUp 15s linear infinite;
+      z-index: 1;
+      user-select: none;
+      pointer-events: none;
+    }
+    
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    
+    /* Search/Filter Feature */
+    .search-container {
+      margin: 0 auto 20px auto;
+      max-width: 80%;
+      position: relative;
+    }
+    
+    #featureSearch {
+      width: 100%;
+      padding: 12px 20px;
+      border: 1px solid #e0a0e0;
+      border-radius: 25px;
+      font-size: 16px;
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+    }
+    
+    #featureSearch:focus {
+      outline: none;
+      box-shadow: 0 2px 15px rgba(226, 73, 212, 0.3);
+      border-color: var(--primary);
+    }
+    
+    /* Scroll Reveal Animation */
+    .features-list li {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    
+    .features-list li.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Tilt.js / Hover3D Effect */
+    .tilt-effect {
+      transition: transform 0.3s ease;
+    }
+    
+    .tilt-effect:hover {
+      transform: perspective(500px) rotateX(5deg) rotateY(5deg);
+    }
   </style>
 </head>
 <body>
-  <div class="index-container">
+  <!-- Floating Emoji Background -->
+  <div id="emojiContainer"></div>
+  
+  <div class="index-container tilt-effect">
     <div class="banner">🎂 Birthday Megaproject – 100 Interactive Features Demo</div>
     <h1>Welcome, Siddhant!</h1>
     <div class="about">
       Explore &amp; build every module – Animation, Games, Guestbook, Sharing, Polls, PWA &amp; more.<br>
       <span style="color:#b2777b">हर फीचर को अलग HTML में बनाएं, उस फ़ाइल का लिंक यहाँ index-page में <b>href</b> में देते जाएँ।</span>
     </div>
-    <ul class="features-list">
+    
+    <!-- Search/Filter Feature -->
+    <div class="search-container">
+      <input type="text" id="featureSearch" placeholder="🔍 Search features..." aria-label="Search features">
+    </div>
+    
+    <ul class="features-list" id="featuresList">
       <li><a href="phase1_greeting.html" target="_blank">Glowing Text, Balloons & Confetti</a></li>
       <li><a href="phase2_countdown.html" target="_blank">Countdown, Age Reveal, Zodiac</a></li>
       <li><a href="guestbook_wishwall.html" target="_blank">Guestbook & Realtime Wishes Wall</a></li>
@@ -81,9 +285,109 @@
       <li><a href="age_calculator.html" target="_blank">Age Calculator + Birthday Countdown</a></li>
       <li><a href="rsvp_event.html" target="_blank">Event RSVP (Birthday Attendance)</a></li>
       <li><a href="visitor_map.html" target="_blank">Visitor Location Map</a></li>
-     
+      <li><a href="glassmorphism_effect.html" target="_blank">Glassmorphism Effect (Frosted Glass)</a></li>
+      <li><a href="interactive_hover.html" target="_blank">Interactive Hover Effects</a></li>
+      <li><a href="gradient_border.html" target="_blank">Animated Gradient Border</a></li>
+      <li><a href="floating_emoji.html" target="_blank">Floating Emoji/Balloon Background</a></li>
+      <li><a href="scroll_reveal.html" target="_blank">Scroll Reveal Animation</a></li>
+      <li><a href="reflection_shine.html" target="_blank">Reflection / Shine Animation</a></li>
+      <li><a href="tilt_hover3d.html" target="_blank">Tilt.js / Hover3D Effects</a></li>
+      <li><a href="search_filter.html" target="_blank">Search/Filter Features List</a></li>
     </ul>
     
+    <div class="note">
+      Tip: Click on any feature to open it in a new tab. Build them one by one!
+    </div>
   </div>
+
+  <script>
+    // Floating Emoji Background
+    const emojis = ['🎈', '🎉', '🎁', '🎂', '🎊', '✨', '🥳', '🎇', '🎆', '💝'];
+    const emojiContainer = document.getElementById('emojiContainer');
+    
+    function createEmoji() {
+      const emoji = document.createElement('div');
+      emoji.className = 'floating-emoji';
+      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      
+      // Random position and animation duration
+      emoji.style.left = Math.random() * 100 + 'vw';
+      emoji.style.animationDuration = (Math.random() * 10 + 5) + 's';
+      emoji.style.fontSize = (Math.random() * 20 + 16) + 'px';
+      
+      emojiContainer.appendChild(emoji);
+      
+      // Remove emoji after animation completes
+      setTimeout(() => {
+        emoji.remove();
+      }, 15000);
+    }
+    
+    // Create initial emojis
+    for (let i = 0; i < 20; i++) {
+      setTimeout(createEmoji, i * 300);
+    }
+    
+    // Continue creating emojis
+    setInterval(createEmoji, 1000);
+    
+    // Search/Filter Functionality
+    const featureSearch = document.getElementById('featureSearch');
+    const featuresList = document.getElementById('featuresList');
+    const features = featuresList.getElementsByTagName('li');
+    
+    featureSearch.addEventListener('input', () => {
+      const searchTerm = featureSearch.value.toLowerCase();
+      
+      Array.from(features).forEach(feature => {
+        const text = feature.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+          feature.style.display = '';
+        } else {
+          feature.style.display = 'none';
+        }
+      });
+    });
+    
+    // Scroll Reveal Animation
+    const featureItems = document.querySelectorAll('.features-list li');
+    
+    function checkVisibility() {
+      featureItems.forEach(item => {
+        const rect = item.getBoundingClientRect();
+        const isVisible = (rect.top <= window.innerHeight * 0.8);
+        
+        if (isVisible) {
+          item.classList.add('visible');
+        }
+      });
+    }
+    
+    // Initial check
+    checkVisibility();
+    
+    // Check on scroll
+    window.addEventListener('scroll', checkVisibility);
+    
+    // Tilt.js / Hover3D Effect
+    const container = document.querySelector('.index-container');
+    
+    container.addEventListener('mousemove', (e) => {
+      const x = e.clientX - container.getBoundingClientRect().left;
+      const y = e.clientY - container.getBoundingClientRect().top;
+      
+      const centerX = container.offsetWidth / 2;
+      const centerY = container.offsetHeight / 2;
+      
+      const angleX = (y - centerY) / 20;
+      const angleY = (centerX - x) / 20;
+      
+      container.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+    });
+    
+    container.addEventListener('mouseleave', () => {
+      container.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+    });
+  </script>
 </body>
 </html>
