@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Floating Quotes + Progress | Siddhant</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <style>
+    body {
+      background: linear-gradient(120deg,#f9fcfc 30%,#fddffe 100%);
+      min-height:140vh;
+      margin:0;
+      font-family:'Segoe UI',cursive,sans-serif;
+      overflow-x:hidden;
+    }
+    .container {max-width:400px;margin:58px auto 1.5em auto;background:#fffefaee;border-radius:17px;box-shadow:0 7px 24px #f796f930;padding:2.2em 1em;text-align:center;}
+    h1 {font-family:'Brush Script MT',cursive;font-size:2em;color:#f27888;}
+    .note {font-size:.99em;color:#99549c;margin:1.2em 0;}
+    .progress-bar {
+      width:96%;height:18px;margin:35px auto 0 auto;background:#eee;border-radius:14px;position:relative;overflow:hidden;
+    }
+    .bar-fill {
+      width: 12%; height:100%; background:linear-gradient(90deg,#ff89e6,#b5b6fe 80%); border-radius:14px;
+      transition:width .22s;
+      box-shadow:0 2px 13px #fc91ab55;
+    }
+    .bar-label {
+      position:absolute;left:50%;top:3px;transform:translateX(-50%);font-size:.97em;color:#696;
+      letter-spacing:1.5px;font-weight:600;
+    }
+    /* Floating Quotes */
+    .floating-quote {
+      position:fixed;left:-300px;top:320px;
+      background:linear-gradient(90deg,#fcf6ffcc,#ebeffe99 90%);
+      border-radius:18px;
+      padding:13px 30px;
+      color:#87328b;font-size:1.17em;
+      box-shadow:0 7px 12px #f5a7e777;
+      animation:flyquote 10s linear forwards;
+      z-index:22;
+      min-width:175px;
+    }
+    @keyframes flyquote {
+      0%   { left:-340px; opacity:0.1;}
+      8%   { opacity:1;}
+      95%  { left:87vw; opacity:1;}
+      100% { left:105vw; opacity:0;}
+    }
+    @media(max-width:460px){.container{max-width:97vw;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌟 Floating Quotes + Progress</h1>
+    <div class="note">Touch/Scroll! Quotes auto-float,<br>progress bar नीचे चलता दिखेगा।<br><span style="color:#c78dcd;">(Quotes text/emoji/edit आप बदल सकते हैं)</span></div>
+    <div style="margin-top:4em;margin-bottom:4em;color:#839;">
+      Lorem ipsum dolor sit amet...<br><br>
+      (Page लंबा रखा है, ताकि progress और floating quote दिख सकें!)<br>
+      <br>🎈 Extra Birthday Quotes can be added!
+    </div>
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+      <div class="bar-fill" id="barFill"></div>
+      <div class="bar-label" id="barPercent">0%</div>
+    </div>
+    <div style="height:190px;"></div>
+  </div>
+  <script>
+    // Progress Bar on Scroll
+    function updateProgress() {
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const scroll = Math.max(document.documentElement.scrollTop, window.scrollY, 0);
+      let pct = docHeight > 0 ? (scroll / docHeight * 100) : 0;
+      pct=Math.min(100,Math.max(0,Math.round(pct)));
+      document.getElementById("barFill").style.width = pct + "%";
+      document.getElementById("barPercent").innerText = pct + "%";
+    }
+    window.addEventListener('scroll',updateProgress);
+    updateProgress();
+
+    // Floating Quotes
+    const quotes = [
+      "Make a wish, Siddhant! ✨",
+      "Birthday hugs & smiles to you! 🤗",
+      "Your light shines brightest today 🌞",
+      "अनोखे हो तुम, शानदार हो तुम 🎉",
+      "Dream big. Celebrate bigger!",
+      "Cheers to another year of awesomeness 🍰",
+      "May your day sparkle & dazzle ✨",
+      "जिंदगी मुस्कराने लगे — Happy Birthday!"
+    ];
+    function floatQuote() {
+      const q = quotes[Math.floor(Math.random()*quotes.length)];
+      const fq = document.createElement("div");
+      fq.className="floating-quote";
+      fq.textContent=q;
+      fq.style.top= (180 + Math.random()*window.innerHeight*0.5) + "px";
+      document.body.appendChild(fq);
+      setTimeout(()=>fq.remove(),9700);
+    }
+    setInterval(floatQuote, 3300);
+    // First float as page loads
+    setTimeout(floatQuote,1200);
+  </script>
+</body>
+</html>
