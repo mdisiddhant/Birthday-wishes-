@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guestbook & Wishes Wall | Siddhant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#eaf6ff,#e0bbfc 85%);margin:0;min-height:100vh;}
+    .container {background:#fffefaee;border-radius:19px;padding:1.7rem 1rem 2.8rem 1rem;max-width:450px;box-shadow:0 0 28px #e7bcf580;margin:44px auto 30px auto;text-align:center;}
+    h1 {color:#9d25b2; font-family:'Brush Script MT',cursive;font-size:2em;letter-spacing:1.3px;}
+    .wish-form input, .wish-form textarea {padding:9px 10px;margin:.45em 0;border-radius:8px;border:1px solid #bb95c7;width:90%;max-width:320px;font-size:1.07em;}
+    .wish-form textarea {resize:none;height:55px;}
+    .wish-form button {padding:10px 24px;background:#865cd6;color:#fff;border:none;border-radius:14px;font-weight:bold;font-size:1.07em;cursor:pointer;margin:10px 0;}
+    .wish-form button:hover {background:#e050c0;}
+    .wishes-wall {margin:1.3em 0 1.6em 0;}
+    .wish-card {background:#f6e9fc;margin:7px auto;border-radius:14px;padding:.6em .9em .7em .9em;max-width:96%;box-shadow:0 2px 10px #b285cf22;text-align:left;}
+    .wish-meta {font-size:0.92em;color:#515151;margin-bottom:.11em;}
+    .wish-txt {margin-bottom:2px;font-size:1.14em;}
+    .reaction-btn {background:0;border:0;font-size:1.25em;cursor:pointer;padding:2px 6px;margin-top:2px;}
+    .live-comment-block{margin:1.5em 0 0 0;text-align:left;}
+    .live-comment-block input{width:82%;padding:8px;border-radius:6px;border:1px solid #bcc;}
+    .live-comment-block button{padding:7px 17px;background:#ff97ce;font-weight:bold;border-radius:8px;border:none;cursor:pointer;color:#fff;}
+    .comments-list{margin:0.9em 7%;}
+    @media(max-width:550px){.container{max-width:97vw;padding:1.1rem 2vw;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎁 Guestbook — Wish Siddhant!</h1>
+
+    <!-- Guest Wish Submission Form -->
+    <form class="wish-form" id="wishForm" autocomplete="off">
+      <input type="text" id="guestName" placeholder="आपका नाम" required /><br>
+      <textarea id="guestWish" placeholder="अपनी शुभकामना लिखें 🎂🎈" required></textarea><br>
+      <button type="submit">Wish भेजें</button>
+    </form>
+
+    <!-- Wishes Wall (Live Feed) -->
+    <div class="wishes-wall" id="wishesWall"></div>
+
+    <!-- Live Comments Section -->
+    <div class="live-comment-block">
+      <b>💬 Live Comments</b><br>
+      <input type="text" id="commentInput" placeholder="Type a comment..." />
+      <button type="button" onclick="postComment()">Send</button>
+      <div class="comments-list" id="commentList"></div>
+    </div>
+  </div>
+
+  <script>
+    // -- Wishes Wall Logic --
+    const wishesKey = "siddhant_guestbook";
+    let wishes = JSON.parse(localStorage.getItem(wishesKey)||"[]");
+    const wishForm = document.getElementById('wishForm');
+    const wishesWall = document.getElementById('wishesWall');
+
+    function displayWishes() {
+      wishesWall.innerHTML = '';
+      wishes.forEach((w, i) => {
+        wishesWall.innerHTML += `
+          <div class="wish-card" id="wish${i}">
+            <div class="wish-meta">${w.name || 'Guest'} • ${w.time}</div>
+            <div class="wish-txt">${w.text}</div>
+            <div>
+              <button class="reaction-btn" onclick="reactWish(${i},'like')" title="Like">👍 <span>${w.like||0}</span></button>
+              <button class="reaction-btn" onclick="reactWish(${i},'love')" title="Love">❤️ <span>${w.love||0}</span></button>
+              <button class="reaction-btn" onclick="reactWish(${i},'wow')" title="Wow">😮 <span>${w.wow||0}</span></button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // Wish submit
+    wishForm.onsubmit = function(e){
+      e.preventDefault();
+      const name = document.getElementById('guestName').value || 'Friend';
+      const text = document.getElementById('guestWish').value;
+      const date = new Date();
+      wishes.push({ name, text, time: date.toLocaleTimeString(), like:0, love:0, wow:0 });
+      localStorage.setItem(wishesKey, JSON.stringify(wishes));
+      displayWishes();
+      wishForm.reset();
+    }
+
+    // Reactions (Like, Love, Wow)
+    function reactWish(idx, type){
+      wishes[idx][type] = (wishes[idx][type]||0) + 1;
+      localStorage.setItem(wishesKey, JSON.stringify(wishes));
+      displayWishes();
+    }
+
+    // --- COMMENTS ---
+    const commentsKey = "siddhant_comments";
+    let comments = JSON.parse(localStorage.getItem(commentsKey) || "[]");
+    function postComment() {
+      let cmt = document.getElementById('commentInput').value;
+      if (!cmt) return;
+      comments.push(`${new Date().toLocaleTimeString()} — ${cmt}`);
+      localStorage.setItem(commentsKey, JSON.stringify(comments));
+      loadComments();
+      document.getElementById('commentInput').value = '';
+    }
+    function loadComments() {
+      document.getElementById('commentList').innerHTML = comments.map(c => `<div>${c}</div>`).join('');
+    }
+    loadComments();
+
+    // INIT
+    displayWishes();
+  </script>
+</body>
+</html>
