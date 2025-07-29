@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Background Music Selector | Siddhant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    body { background:linear-gradient(100deg,#e0d9fc 50%,#ffdee4 100%);
+      min-height:100vh; margin:0; font-family:'Segoe UI',cursive;}
+    .container{background:#fffefaee;max-width:430px;border-radius:17px;
+      box-shadow:0 7px 26px #beeae988; margin:48px auto 34px auto;
+      text-align:center;padding:2.2em 1.1em 2em 1.1em;}
+    h1{color:#d84da0;font-size:2em;font-family:'Brush Script MT',cursive;}
+    label{font-weight:bold;font-size:1.08em;color:#6e2895;}
+    select{font-size:1.08em;padding:7px 19px;margin:0.5em;border-radius:8px;}
+    .track-title{color:#f35d9d;font-size:1.15em;font-weight:bold;margin-top:1.1em;}
+    audio{margin:1.2em auto 0 auto;width:100%;max-width:295px;}
+    @media(max-width:460px){.container{max-width:97vw;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎼 Theme Music Selector</h1>
+    <label for="bgmList">Select a Birthday Theme Music:</label><br>
+    <select id="bgmList" onchange="changeTrack()">
+      <option value="birthday-theme.mp3">Happy Birthday (Classic)</option>
+      <option value="funky.mp3">Funky Party Beat</option>
+      <option value="softpiano.mp3">Calm Piano Wish</option>
+      <option value="popwish.mp3">Pop Birthday Vibes</option>
+      <option value="guitar.mp3">Guitar Strums</option>
+    </select>
+    <div class="track-title" id="trackName">Now Playing: Happy Birthday (Classic)</div>
+    <audio id="musicPlayer" controls autoplay loop>
+      <source src="birthday-theme.mp3" type="audio/mpeg"/>
+      Your browser does not support the audio element.
+    </audio>
+    <div style="color:#846f9e;margin-top:1.7em;">
+      🎹 अपनी MP3s <b>birthday-theme.mp3, funky.mp3, softpiano.mp3, popwish.mp3, guitar.mp3</b> अपने फोल्डर में रखें<br>
+      (You can rename/replace with your favorite tracks!)
+    </div>
+  </div>
+  <script>
+    // Tracks and names
+    const tracks = {
+      "birthday-theme.mp3": "Happy Birthday (Classic)",
+      "funky.mp3": "Funky Party Beat",
+      "softpiano.mp3": "Calm Piano Wish",
+      "popwish.mp3": "Pop Birthday Vibes",
+      "guitar.mp3": "Guitar Strums"
+    };
+    function changeTrack() {
+      const sel = document.getElementById("bgmList");
+      const val = sel.value;
+      const player = document.getElementById("musicPlayer");
+      player.src = val;
+      player.load();
+      player.play();
+      document.getElementById("trackName").textContent = "Now Playing: " + tracks[val];
+    }
+  </script>
+</body>
+</html>
