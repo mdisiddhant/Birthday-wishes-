@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Spin The Wheel Game | Siddhant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    body {background:linear-gradient(120deg,#dae2f8 60%,#d6a4a4 100%);min-height:100vh;margin:0;font-family:'Segoe UI',cursive;}
+    .container { max-width:360px; margin:45px auto 35px auto; background:#fffefaee; border-radius:17px; box-shadow:0 6px 28px #f098c3a8; text-align:center; padding:2.2em 1.1em 2.2em 1.1em;}
+    h1 {font-family:'Brush Script MT',cursive;font-size:2em;color:#e859c7;margin-bottom:.6em;}
+    .wheel-box {margin:1.1em auto 1.3em auto;}
+    .wheel {width:210px;height:210px;border-radius:50%;border:9px solid #e066b7;box-shadow:0 0 18px #c2acf2ef;background:conic-gradient(#ffd166 0% 25%, #70e1f5 25% 50%, #c1c1fa 50% 75%, #ff81c9 75% 100%);}
+    .wheel-pointer { width:0; height:0; border-left:17px solid transparent; border-right:17px solid transparent;
+      border-bottom:32px solid #f02368; margin:-16px auto 10px auto;}
+    .spin-btn {margin:1.2em 0 .8em 0; padding:14px 42px; font-size:1.22em; border-radius:21px; background:#7f3ff6; color:#fff; border:none; font-weight:bold; cursor:pointer; letter-spacing:.2px; box-shadow:0 2px 12px #c6a6f2bb;}
+    .spin-btn:active {background:#d240b3;}
+    .result {font-size:1.27em;color:#672b85;margin-top:1.3em; font-family:'Segoe UI',cursive;}
+    .wheel-label {position:absolute;width:210px;left:50%;top:160px;transform:translateX(-50%);}
+    @media(max-width:400px){.container{max-width:99vw;padding:1.2em 4vw;}.wheel{width:146px;height:146px;}.wheel-label{width:146px;top:110px;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎠 Spin the Wheel</h1>
+    <div class="wheel-box" style="position:relative;">
+      <div class="wheel-pointer"></div>
+      <div class="wheel" id="wheel" style="transition:transform 3.4s cubic-bezier(.27,.53,.53,.97);"></div>
+      <div class="wheel-label" id="labels"></div>
+    </div>
+    <button class="spin-btn" onclick="spinWheel()" id="spinButton">Spin Now!</button>
+    <div class="result" id="result"></div>
+  </div>
+  <script>
+    // Prize options (4 slices; Add more for 8+ slices in advanced version)
+    const options = [
+      "🍫 Chocolate Surprise",
+      "🎁 Lucky Gift Box",
+      "🎉 Party Shoutout",
+      "😇 Heartfelt Wish",
+      "📷 Insta Story Feature",
+      "🎂 Cake Bite!",
+      "🥳 Birthday Hug Coupon",
+      "👑 VIP Star Badge"
+    ];
+    // Wheel Drawing—(for simple demo, just use CSS Gradient Box)
+    const labels = document.getElementById('labels');
+    labels.innerHTML = options.map((opt,i)=>`<div style="position:absolute;left:50%;top:6px;transform:translateX(-50%) rotate(${i*360/options.length+360/(2*options.length)}deg);font-size:.97em;width:100%;text-align:center;color:#6a3687;font-weight:bold;pointer-events:none;">${opt}</div>`).join('');
+    let spinning = false;
+    function spinWheel() {
+      if (spinning) return;
+      spinning = true;
+      document.getElementById('spinButton').innerText = "Spinning…";
+      const wheel = document.getElementById('wheel');
+      const resultBox = document.getElementById('result');
+      // Random Option
+      const rand = Math.floor(Math.random() * options.length);
+      // 1 spin (360deg) + additional spins + angle for prize
+      const degPerOpt = 360 / options.length;
+      const stopAt = 360*4 + (360 - (rand*degPerOpt + degPerOpt/2));
+      wheel.style.transform = `rotate(${stopAt}deg)`;
+      setTimeout(()=>{
+        spinning = false;
+        document.getElementById('spinButton').innerText = "Spin Now!";
+        resultBox.innerHTML = `You got: <b>${options[rand]}</b> 🎊`;
+      }, 3700);
+    }
+  </script>
+</body>
+</html>
