@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Download Birthday Card | Siddhant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    body {font-family:'Segoe UI',cursive,sans-serif;margin:0;background:linear-gradient(120deg,#e1f6ff 60%,#ffe6fd 100%);}
+    .container {max-width:400px;margin:50px auto 36px auto;background:#fffefaee;border-radius:18px;box-shadow:0 7px 28px #b1eeda14;padding:1.8em 1em 2.5em 1em;text-align:center;}
+    #cardArea {margin:0 auto 1.5em auto;padding:2em 1em 2em 1em;max-width:320px;background:linear-gradient(125deg,#e6d4ffcc,#ffecebcc 100%);border-radius:18px;box-shadow:0 4px 18px #fbc8d5cc;text-align:center;position:relative;}
+    .card-head {font-family:'Brush Script MT',cursive;font-size:1.6em;color:#c54dc5;text-shadow:0 2px 12px #ffefaf44;}
+    .photo {margin:1em auto 1em auto;width:95px;height:95px;border-radius:48%;object-fit:cover;box-shadow:0 2px 11px #ecd8fa77;}
+    .card-msg {font-size:1.08em;color:#623578;line-height:1.5;}
+    .save-btn {background:#71e3e8;color:#0d5266;padding:13px 35px;border-radius:15px;font-size:1.12em;margin-top:2em;
+      border:none;box-shadow:0 2px 18px #bdeafd8a;cursor:pointer;font-weight:bold;}
+    .save-btn:active {background:#ffd166;color:#885300;}
+    @media(max-width:450px){.container{max-width:97vw;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="cardArea">
+      <div class="card-head">Happy Birthday Siddhant!</div>
+      <img src="photo1.jpg" alt="Birthday Profile" class="photo" />
+      <div class="card-msg">
+        On this wonderful day, we celebrate the amazing person you are!<br>
+        Your kindness, intelligence, and vibrant spirit light up every room you enter.<br>
+        <span style="color:#e4249e;">May this year bring you closer to your dreams 🎂</span>
+      </div>
+    </div>
+    <button class="save-btn" onclick="downloadCard()">Download as Image</button>
+    <div style="margin-top:1.3em;color:#658;">(*इस कार्ड की फोटो/टेक्स्ट अपने हिसाब से बदल सकते हैं, ऊपर जिस इमेज का नाम है वही photo फोल्डर में रखें!)</div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script>
+    function downloadCard(){
+      html2canvas(document.getElementById("cardArea")).then(canvas=>{
+        let link=document.createElement('a');
+        link.download="happy_birthday_siddhant.png";
+        link.href=canvas.toDataURL("image/png");
+        link.click();
+      });
+    }
+  </script>
+</body>
+</html>
