@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Birthday Age Calculator | Siddhant</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <style>
+    body {background:linear-gradient(110deg,#e7f9ff 60%,#ffebf7 100%);
+      min-height:100vh;margin:0;font-family:'Segoe UI',cursive,sans-serif;}
+    .container {max-width:430px;margin:56px auto 34px auto;
+      background:#fffefaee;border-radius:18px;box-shadow:0 8px 31px #d4bfff13;
+      text-align:center;padding:2.2em 1em 2.6em 1em;}
+    h1 {font-family:'Brush Script MT',cursive;font-size:2em;color:#178aae;}
+    .input-block{margin:1.4em 0 1.7em 0;}
+    input[type="date"],button{
+      padding:10px 19px;border-radius:10px;border:1.6px solid #b7a6e8;
+      font-size:1.08em;margin:0 7px 0 0;
+    }
+    button{
+      background:#2db7a1;color:#fff;font-weight:bold;border:none;transition:.17s;cursor:pointer;
+    }
+    button:active{background:#ffc057;color:#873100;}
+    .resbox{background:#f3e9fdcc;padding:1em;margin:1.5em 0 0 0;
+      color:#48236c;border-radius:14px;font-size:1.13em; box-shadow:0 1px 12px #c6c3fa19;}
+    .msg2{font-size:.99em;color:#8643b6;margin-top:1.8em;}
+    @media(max-width:460px){.container{max-width:97vw;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Birthday Age Calculator</h1>
+    <div class="input-block">
+      <input type="date" id="dob" value="2001-07-29" />
+      <button onclick="calcAge()">Calculate</button>
+    </div>
+    <div class="resbox" id="result"></div>
+    <div class="msg2">
+      जन्मतिथि डालते ही<br>
+      Age, अगली बर्थडे तक Countdown और Zodiac एक साथ जानिए!
+    </div>
+  </div>
+  <script>
+    function zodiac(d){
+      let m=d.getMonth()+1,n=d.getDate();
+      let z=[ [1,20,'Capricorn'],[2,18,'Aquarius'],[3,20,'Pisces'],[4,20,'Aries'],[5,21,'Taurus'],[6,21,'Gemini'],[7,23,'Cancer'],[8,23,'Leo'],[9,23,'Virgo'],[10,23,'Libra'],[11,22,'Scorpio'],[12,22,'Sagittarius'],[12,31,'Capricorn']];
+      for(let i=0;i<z.length-1;i++){let s=z[i],e=z[i+1];
+        if((m===s[0]&&n>=s[1])||(m===e[0]&&n<e[1]))return s[2];}
+      return 'Unknown';
+    }
+    function calcAge() {
+      let val=document.getElementById("dob").value;
+      if(!val) return;
+      let dob=new Date(val);
+      let now=new Date();
+      let ageY=now.getFullYear()-dob.getFullYear();
+      let m = now.getMonth()-dob
+      
