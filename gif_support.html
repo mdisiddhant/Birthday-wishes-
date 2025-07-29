@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GIF Wishes Support | Siddhant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    body{margin:0;padding:0;min-height:100vh;font-family:'Segoe UI',sans-serif;
+      background:linear-gradient(120deg,#e6e0ff 60%,#ffe3f9 100%);}
+    .container{background:#fffdfaee;max-width:435px;border-radius:16px;box-shadow:0 7px 38px #b198fa19;
+      margin:55px auto 29px auto;padding:2em 1.1em 2.2em 1.1em;text-align:center;}
+    h1{font-family:'Brush Script MT',cursive;font-size:2em;color:#8d21ae;}
+    .gif-picker{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:.8em 0 1.1em 0;}
+    .gif-thumb{width:78px;height:78px;object-fit:cover;border-radius:12px;box-shadow:0 3px 10px #c9e6af40;cursor:pointer;border:2px solid #fff;transition:.12s;}
+    .gif-thumb.selected{border:2px solid #e43be1;}
+    .preview{margin:.8em 0 1.1em 0;}
+    .preview img{max-width:185px;border-radius:13px;box-shadow:0 3px 14px #eb7fd660;}
+    .note{color:#a98bbe;margin:1em 0 .2em 0;font-size:.95em;}
+    @media(max-width:500px){.container{max-width:97vw;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎁 Happy Birthday GIF Wishes</h1>
+    <div class="note">Pick a GIF to send with your wish!<br/>(You can add more GIFs—just add to the <b>gifs[]</b> array! 👇)</div>
+    <div class="gif-picker" id="gifPicker"></div>
+    <div class="preview" id="gifPreview"></div>
+    <input type="text" id="gifUrl" placeholder="Paste GIF URL" style="width:70%;padding:7px 8px;border-radius:8px;border:1px solid #bbb;font-size:1em;">
+    <button onclick="customGif()" style="padding:7px 13px;border-radius:8px;background:#ff97ce;font-weight:bold;border:none;color:#fff;margin-left:7px;">Use</button>
+  </div>
+  <script>
+    //🎂 Static GIFs (local file/online url)
+    const gifs = [
+      {src:"happy1.gif", alt:"Balloons Surprise"},
+      {src:"happy2.gif", alt:"Birthday Fun"},
+      {src:"happy3.gif", alt:"Party Dance"},
+      {src:"happy4.gif", alt:"Candles Cake"},
+      {src:"https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif", alt:"Confetti Blow"},
+      {src:"https://media.giphy.com/media/13k4VSc3ngLPUY/giphy.gif", alt:"Teddy Wish"},
+      {src:"https://media.giphy.com/media/26gsspf0Cfwf5ksJi/giphy.gif", alt:"Golden Text"}
+    ];
+    let selected=null;
+    function showPicker(){
+      let html="";
+      gifs.forEach((g,i)=>{
+        html+=`<img src="${g.src}" class="gif-thumb${selected===i?' selected':''}" alt="${g.alt}" title="${g.alt}" onclick="pickGif(${i})"/>`;
+      });
+      document.getElementById('gifPicker').innerHTML=html;
+      showPreview();
+    }
+    function pickGif(i){
+      selected=i; showPicker();
+    }
+    function showPreview(){
+      const preview=document.getElementById('gifPreview');
+      if(selected!==null){
+        preview.innerHTML=`<img src="${gifs[selected].src}" alt="Birthday GIF"><div style="margin:7px 0 -.7em 0;color:#c46;">"${gifs[selected].alt}"</div>`;
+      } else preview.innerHTML="";
+    }
+    // Custom URL
+    function customGif(){
+      const url = document.getElementById('gifUrl').value;
+      if(url.trim()){
+        gifs.push({src:url,alt:"Custom GIF"});
+        selected=gifs.length-1;
+        showPicker();
+        document.getElementById('gifUrl').value="";
+      }
+    }
+    showPicker();
+    window.pickGif=pickGif; // To allow inline event
+  </script>
+</body>
+</html>
