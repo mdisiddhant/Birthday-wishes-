@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Photo Slideshow | Siddhant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    body { background:linear-gradient(120deg,#dcffef 45%,#e3d9fc 100%);
+      min-height:100vh; margin:0; font-family:'Segoe UI',cursive;}
+    .container{background:#fffefaee;
+      max-width:400px; margin:45px auto 36px auto; border-radius:16px;
+      box-shadow:0 6px 32px #94cccf44; text-align:center; padding:1.65em 0 2em 0;}
+    h1{color:#7e09e5;font-family:'Brush Script MT',cursive;font-size:2em;}
+    .slideshow{position:relative; max-width:330px; margin:1.3em auto;}
+    .slide-img{width:100%; height:215px; object-fit:cover; border-radius:14px;
+      box-shadow:0 2px 18px #c283e7af;}
+    .nav-btn{position:absolute;top:48%;transform:translateY(-50%);
+      background:#efc3f780;color:#6f1da1;border:none;
+      font-size:2em;border-radius:50%;width:44px;height:44px;cursor:pointer;}
+    .nav-btn.left{left:-24px;} .nav-btn.right{right:-24px;}
+    .caption{margin-top:13px; font-size:1.04em; color:#472a62;}
+    @media(max-width:450px){.container{max-width:97vw;}.slideshow{max-width:96vw;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📸 Photo Slideshow</h1>
+    <!-- Slideshow/Carousel -->
+    <div class="slideshow" id="slideshow">
+      <button class="nav-btn left" onclick="prev()">&#8678;</button>
+      <img src="photo1.jpg" id="slide-img" class="slide-img" alt="Birthday Memory" />
+      <button class="nav-btn right" onclick="next()">&#8680;</button>
+      <div class="caption" id="caption"></div>
+    </div>
+    <div style="color:#8b489e;margin-top:1.4em;font-size:.98em;">
+      [फ़ोटोज़ बदलने के लिए ← और → क्लिक करें]<br>
+      (Demo: अपनी फोटो, यादें 'photo1.jpg', 'photo2.jpg' आदि नाम से अपने फोल्डर में रखें)
+    </div>
+  </div>
+  <script>
+    // ==== IMAGES + CAPTIONS ====
+    const imgData = [
+      { src:'photo1.jpg', cap:'Childhood smile 😁' },
+      { src:'photo2.jpg', cap:'Family moments 👨‍👩‍👧‍👦' },
+      { src:'photo3.jpg', cap:'With special friends 💛' },
+      { src:'photo4.jpg', cap:'Memorable Trip ✈️' },
+      { src:'photo5.jpg', cap:'Birthday Blast 🎉' }
+    ];
+    let idx=0;
+    // Show Slide
+    function showSlide(i){
+      const slide = document.getElementById('slide-img');
+      const caption = document.getElementById('caption');
+      if(i<0) idx=imgData.length-1;
+      else if(i>=imgData.length) idx=0;
+      else idx=i;
+      slide.src = imgData[idx].src;
+      caption.textContent = imgData[idx].cap;
+    }
+    function next(){ showSlide(idx+1); }
+    function prev(){ showSlide(idx-1); }
+    // Init
+    showSlide(0);
+  </script>
+</body>
+</html>
