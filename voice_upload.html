@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Photo & Voice Upload | Siddhant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    body {margin:0;padding:0;min-height:100vh;font-family:'Segoe UI',sans-serif;
+      background:linear-gradient(130deg,#c8f8ff 40%,#fbc2f8 100%);}
+    .container{background:#fffefaee;border-radius:18px;border:1.7px solid #f8b0c8;
+      max-width:420px;margin:40px auto 36px auto;padding:2.1rem 1.1rem 2.4rem 1.1rem;
+      box-shadow:0 7px 35px #c3f7fc44;text-align:center;}
+    h1{color:#a11fa7;font-size:2em;font-family:'Brush Script MT',cursive;}
+    .upload-block{margin:1.1em 0 2em 0;}
+    label{background:#e3beff;border-radius:8px;padding:9px 17px;font-size:1em;cursor:pointer;transition:.14s;}
+    label:hover{background:#d974f2;color:#fff;}
+    .preview-img,.preview-audio{margin:1.1em auto 1em auto;max-width:180px;border-radius:11px;box-shadow:0 3px 18px #eaa5c855;}
+    .note{margin-top:2em;font-size:1em;color:#727;}
+    @media(max-width:550px){.container{max-width:96vw;padding:1rem 2vw;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Share Your Birthday Memory</h1>
+    <!-- 📷 Photo Upload -->
+    <div class="upload-block">
+      <input type="file" accept="image/*" id="memPhoto" style="display:none" onchange="showPreview(event)">
+      <label for="memPhoto">📷 Upload a Photo or Memory</label>
+      <div id="imgPreview"></div>
+    </div>
+    <!-- 🎤 Voice Note Upload -->
+    <div class="upload-block">
+      <input type="file" accept="audio/*" id="voiceNote" style="display:none" onchange="voicePreview(event)">
+      <label for="voiceNote">🎤 Upload a Voice Note</label>
+      <audio class="preview-audio" id="audioPreview" controls style="display:none"></audio>
+    </div>
+    <div class="note">
+      आप अपनी यादगार फोटो और voice-message यहाँ अपलोड कर सकते हैं —<br>
+      <span style="font-size:.93em;color:#a177bd;">*यह डेमो local preview-only है (डेटा ब्राउज़र में सेव नहीं होता)*</span>
+    </div>
+  </div>
+  <script>
+    // Photo Upload Preview
+    function showPreview(e){
+      let out=document.getElementById('imgPreview');
+      const file=e.target.files[0];
+      if(!file) return;
+      let reader=new FileReader();
+      reader.onload=r=>{
+        out.innerHTML=`<img src="${r.target.result}" class="preview-img" alt="Photo" />`;
+      }
+      reader.readAsDataURL(file);
+    }
+    // Voice Note Preview
+    function voicePreview(e){
+      const file=e.target.files[0];
+      if(!file) return;
+      const audio=document.getElementById('audioPreview');
+      audio.src=URL.createObjectURL(file);
+      audio.style.display="block";
+    }
+  </script>
+</body>
+</html>
