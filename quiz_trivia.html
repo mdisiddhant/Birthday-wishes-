@@ -56,4 +56,18 @@
       Questions/answers आप अपनी पसंद से add/edit कर सकते हैं!<br>
       और भी quizzes, puzzles, games इसी structure में बना सकते हैं.
     </div>
-    
+  </div>
+  <script>
+    document.getElementById("quizForm").onsubmit=function(e){
+      e.preventDefault();
+      let score=0;
+      ["q1","q2","q3","q4"].forEach(q=>{
+        let val = document.querySelector(`input[name="${q}"]:checked`);
+        if(val && val.value==="1") score++;
+      });
+      document.getElementById("scoreBlock").innerHTML = 
+        `<b>Your Score: ${score} / 4</b><br>${score===4?"Amazing!":"Try again or share!"}`;
+    };
+  </script>
+</body>
+</html>
