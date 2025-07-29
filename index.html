@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Cosmic Birthday Features 🚀</title>
+  <title>Cosmic Birthday Features �</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600&family=Rubik+Moonrocks&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600&family=Rubik+Moonrocks&family=Audiowide&family=Montserrat:wght@900&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #00e5ff;
@@ -16,140 +16,244 @@
       --space-purple: #4b1857;
       --neon-pink: #ff2a6d;
       --neon-blue: #05d9e8;
+      --neon-purple: #d300ff;
+      --neon-green: #00ff88;
+      --neon-yellow: #ffcc00;
     }
     
     body {
       margin: 0;
-      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
+      background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
       font-family: 'Poppins', sans-serif;
       color: white;
       min-height: 100vh;
       overflow-x: hidden;
-    }
-    
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    
-    /* Glassmorphism Effect */
-    .index-container {
-      max-width: 800px;
-      margin: 32px auto 44px auto;
-      padding: 2.2rem 1.1rem 2.9rem 1.1rem;
-      background: rgba(255, 254, 250, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 19px;
-      box-shadow: 0 8px 32px rgba(151, 65, 252, 0.2);
-      text-align: center;
-      position: relative;
-      z-index: 2;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-    
-    /* Glow Text - Space Neon Style */
-    h1 {
-      font-family: 'Orbitron', sans-serif;
-      color: var(--neon-blue);
-      font-size: 2.8em;
-      letter-spacing: 3px;
-      text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
-      margin-bottom: .7em;
-      animation: glowPulse 2s ease-in-out infinite alternate;
-    }
-    
-    @keyframes glowPulse {
-      from { text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue); }
-      to { text-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-blue), 0 0 45px #d300ff; }
-    }
-    
-    /* 3D Floating Cards with Hover */
-    .features-list {
-      text-align: left;
-      columns: 2 250px;
-      gap: 2em;
-      font-size: 1.04em;
-      padding: 0;
-      margin: 0 0 18px 0;
       perspective: 1000px;
     }
     
-    .features-list li {
-      background: rgba(155, 81, 224, 0.15);
-      border-radius: 13px;
-      margin: 0 0 15px 0;
-      padding: 12px 18px;
-      list-style-type: '🚀 ';
-      break-inside: avoid;
-      transition: all 0.4s ease;
+    /* VIP Glassmorphism Container */
+    .index-container {
+      max-width: 900px;
+      margin: 32px auto 44px auto;
+      padding: 2.8rem 1.8rem 3.5rem 1.8rem;
+      background: linear-gradient(135deg, rgba(255, 254, 250, 0.08) 0%, rgba(255, 254, 250, 0.15) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 25px;
+      box-shadow: 0 8px 42px rgba(151, 65, 252, 0.35),
+                  inset 0 4px 12px rgba(255, 255, 255, 0.1);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       transform-style: preserve-3d;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      animation: floatContainer 8s ease-in-out infinite;
+    }
+    
+    @keyframes floatContainer {
+      0%, 100% { transform: translateY(0) rotateX(0.5deg) rotateY(0.5deg); }
+      50% { transform: translateY(-20px) rotateX(1deg) rotateY(1deg); }
+    }
+    
+    /* VIP Glow Text with Rainbow Effect */
+    h1 {
+      font-family: 'Audiowide', cursive;
+      font-size: 3.5em;
+      letter-spacing: 4px;
+      margin-bottom: .7em;
+      position: relative;
+      display: inline-block;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, 
+        var(--neon-blue), 
+        var(--neon-purple), 
+        var(--neon-pink), 
+        var(--neon-yellow), 
+        var(--neon-green), 
+        var(--neon-blue));
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: rainbowGlow 8s linear infinite, floatText 3s ease-in-out infinite alternate;
+      text-shadow: 0 0 10px rgba(255,255,255,0.3);
+      filter: drop-shadow(0 0 15px rgba(5, 217, 232, 0.7));
+    }
+    
+    @keyframes rainbowGlow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 400% 50%; }
+    }
+    
+    @keyframes floatText {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px); }
+    }
+    
+    /* Dynamic Welcome Text */
+    .dynamic-text {
+      display: inline-block;
+      position: relative;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 1.8em;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, 
+        var(--neon-blue), 
+        var(--neon-purple), 
+        var(--neon-pink), 
+        var(--neon-yellow), 
+        var(--neon-green));
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: colorChange 5s linear infinite;
+    }
+    
+    @keyframes colorChange {
+      0% { 
+        background-position: 0% 50%;
+        text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+      }
+      25% { 
+        background-position: 100% 50%;
+        text-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple);
+      }
+      50% { 
+        background-position: 200% 50%;
+        text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+      }
+      75% { 
+        background-position: 300% 50%;
+        text-shadow: 0 0 10px var(--neon-yellow), 0 0 20px var(--neon-yellow);
+      }
+      100% { 
+        background-position: 400% 50%;
+        text-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
+      }
+    }
+    
+    /* 3D Holographic Cards */
+    .features-list {
+      text-align: left;
+      columns: 2 280px;
+      gap: 2.2em;
+      font-size: 1.1em;
+      padding: 0;
+      margin: 0 0 25px 0;
+      perspective: 1200px;
+    }
+    
+    .features-list li {
+      background: linear-gradient(145deg, rgba(155, 81, 224, 0.18) 0%, rgba(91, 33, 182, 0.25) 100%);
+      border-radius: 16px;
+      margin: 0 0 18px 0;
+      padding: 15px 20px;
+      list-style-type: none;
+      break-inside: avoid;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform-style: preserve-3d;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.1);
       position: relative;
       overflow: hidden;
+      backdrop-filter: blur(5px);
+      counter-increment: feature-counter;
     }
     
     .features-list li::before {
+      content: '✦ ' counter(feature-counter);
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      font-size: 0.9em;
+      color: var(--neon-blue);
+      opacity: 0.7;
+    }
+    
+    .features-list li::after {
       content: '';
       position: absolute;
       top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
+      left: 0;
+      right: 0;
+      bottom: 0;
       background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.1),
-        transparent
+        135deg,
+        rgba(255,255,255,0.1) 0%,
+        rgba(255,255,255,0) 50%,
+        rgba(255,255,255,0.1) 100%
       );
-      transition: 0.5s;
+      opacity: 0;
+      transition: opacity 0.3s;
     }
     
     .features-list li:hover {
-      transform: translateY(-8px) rotateX(5deg) rotateY(5deg);
-      box-shadow: 0 15px 30px rgba(123, 31, 162, 0.4);
-      background: rgba(155, 81, 224, 0.25);
+      transform: translateY(-12px) rotateX(8deg) rotateY(5deg) scale(1.03);
+      box-shadow: 0 20px 40px rgba(123, 31, 162, 0.5),
+                  0 0 0 2px rgba(255,255,255,0.1);
+      background: linear-gradient(145deg, rgba(155, 81, 224, 0.3) 0%, rgba(91, 33, 182, 0.4) 100%);
       border: 1px solid rgba(255, 255, 255, 0.3);
     }
     
-    .features-list li:hover::before {
-      left: 100%;
+    .features-list li:hover::after {
+      opacity: 1;
     }
     
-    /* Hover Light Effect on Buttons */
+    /* Holographic Link Effect */
     .features-list a {
       color: #fff;
       text-decoration: none;
-      transition: all 0.3s;
+      transition: all 0.4s;
       font-weight: 500;
       display: block;
       position: relative;
       z-index: 1;
+      padding-left: 25px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
     
     .features-list a:hover { 
-      color: var(--neon-pink);
-      text-shadow: 0 0 8px var(--neon-pink);
+      color: transparent;
+      background: linear-gradient(90deg, 
+        var(--neon-blue), 
+        var(--neon-purple), 
+        var(--neon-pink));
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: linkHover 2s linear infinite;
+      transform: translateX(5px);
     }
     
-    /* Shiny Border Animation */
+    @keyframes linkHover {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+    
+    /* VIP Banner with Holographic Effect */
     .banner {
-      margin-bottom: 1.5em;
-      border-radius: 15px;
-      background: rgba(0, 0, 0, 0.3);
+      margin-bottom: 2em;
+      border-radius: 18px;
+      background: linear-gradient(90deg, 
+        rgba(5, 217, 232, 0.1) 0%, 
+        rgba(211, 0, 255, 0.1) 50%, 
+        rgba(255, 42, 109, 0.1) 100%);
       color: white;
-      padding: .6em 0;
-      font-size: 1.2em;
+      padding: 1em 0;
+      font-size: 1.5em;
       font-weight: 600;
       position: relative;
       overflow: hidden;
-      border: 1px solid transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
       font-family: 'Rubik Moonrocks', cursive;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3),
+                  inset 0 1px 0 rgba(255,255,255,0.1);
+      animation: bannerFloat 6s ease-in-out infinite;
     }
     
     .banner::before {
@@ -162,109 +266,106 @@
       background: linear-gradient(
         to bottom right,
         transparent, transparent, transparent,
-        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.15),
         transparent, transparent, transparent
       );
       transform: rotate(30deg);
       animation: shine 6s infinite;
     }
     
-    @keyframes shine {
-      0% { transform: rotate(30deg) translate(-30%, -30%); }
-      100% { transform: rotate(30deg) translate(30%, 30%); }
+    .banner::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, 
+        rgba(5, 217, 232, 0.3) 0%, 
+        rgba(211, 0, 255, 0.3) 50%, 
+        rgba(255, 42, 109, 0.3) 100%);
+      opacity: 0.1;
+      z-index: -1;
+    }
+    
+    @keyframes bannerFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
     
     /* Particle Background Animation */
     .particle {
       position: fixed;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 50%;
+      font-family: 'Arial', sans-serif;
       animation: floatParticle linear infinite;
       z-index: 1;
       pointer-events: none;
+      text-shadow: 0 0 5px currentColor;
+      opacity: 0;
     }
     
     @keyframes floatParticle {
       0% {
-        transform: translate(0, 0) rotate(0deg);
+        transform: translate(0, 0) rotate(0deg) scale(0.5);
         opacity: 0;
       }
       10% {
-        opacity: 1;
+        opacity: 0.8;
       }
       90% {
-        opacity: 1;
+        opacity: 0.8;
       }
       100% {
-        transform: translate(100px, -100vh) rotate(360deg);
+        transform: translate(calc(100px + (var(--random-x) * 100vw), calc(-100vh + (var(--random-y) * -100vh))) rotate(360deg) scale(1.5);
         opacity: 0;
       }
     }
     
-    /* Confetti Rain */
+    /* VIP Confetti Rain */
     .confetti {
       position: fixed;
-      width: 10px;
-      height: 10px;
-      background-color: #f00;
+      width: 12px;
+      height: 12px;
       opacity: 0;
       z-index: 1;
       animation: confettiFall 5s linear infinite;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
     }
     
     @keyframes confettiFall {
       0% {
-        transform: translateY(-100vh) rotate(0deg);
+        transform: translateY(-100vh) rotate(0deg) rotateX(0deg) rotateY(0deg);
         opacity: 1;
       }
       100% {
-        transform: translateY(100vh) rotate(360deg);
+        transform: translateY(100vh) rotate(720deg) rotateX(360deg) rotateY(360deg);
         opacity: 0;
       }
     }
     
-    /* Shadow and Depth */
-    .index-container {
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
-                  inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    /* Space Nebula Background */
+    .nebula {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.5;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(123, 31, 162, 0.3) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(5, 217, 232, 0.3) 0%, transparent 40%),
+        radial-gradient(circle at 40% 60%, rgba(255, 42, 109, 0.3) 0%, transparent 40%);
+      animation: nebulaPulse 30s infinite alternate;
     }
     
-    /* Animated Typing Effect */
-    .typing-text {
-      display: inline-block;
-      overflow: hidden;
-      border-right: 3px solid var(--neon-blue);
-      white-space: nowrap;
-      margin: 0 auto;
-      letter-spacing: 2px;
-      animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+    @keyframes nebulaPulse {
+      0% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.05); }
+      100% { opacity: 0.3; transform: scale(1); }
     }
     
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-    
-    @keyframes blink-caret {
-      from, to { border-color: transparent }
-      50% { border-color: var(--neon-blue) }
-    }
-    
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .index-container {
-        max-width: 90vw;
-        padding: 1.5rem;
-      }
-      .features-list {
-        columns: 1;
-      }
-      h1 {
-        font-size: 2em;
-      }
-    }
-    
-    /* Space-themed elements */
+    /* Twinkling Stars */
     .stars {
       position: fixed;
       top: 0;
@@ -279,49 +380,186 @@
       background: white;
       border-radius: 50%;
       animation: twinkle var(--duration) infinite ease-in-out;
+      box-shadow: 0 0 10px 1px rgba(255,255,255,0.8);
     }
     
     @keyframes twinkle {
-      0%, 100% { opacity: 0.2; }
-      50% { opacity: 1; }
+      0%, 100% { opacity: 0.1; transform: scale(0.5); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+    
+    /* Comet Animation */
+    .comet {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 0 15px 5px rgba(5, 217, 232, 0.8);
+      z-index: 0;
+      opacity: 0;
+      animation: cometFly 20s linear infinite;
+    }
+    
+    @keyframes cometFly {
+      0% {
+        transform: translate(-100px, -100px) scale(0.5);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      20% {
+        transform: translate(50vw, 50vh) scale(1);
+      }
+      100% {
+        transform: translate(110vw, 110vh) scale(0.2);
+        opacity: 0;
+      }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .index-container {
+        max-width: 92vw;
+        padding: 1.8rem;
+      }
+      .features-list {
+        columns: 1;
+      }
+      h1 {
+        font-size: 2.2em;
+      }
+      .banner {
+        font-size: 1.2em;
+      }
+    }
+    
+    /* About Text Styling */
+    .about {
+      margin-bottom: 2.5em;
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.8);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    .about span {
+      display: inline-block;
+      margin-top: 0.8em;
+      padding: 0.4em 0.8em;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.2);
+      font-size: 0.9em;
+      animation: pulseGlow 3s infinite alternate;
+    }
+    
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 5px rgba(165, 216, 255, 0.3); }
+      100% { box-shadow: 0 0 15px rgba(165, 216, 255, 0.6); }
+    }
+    
+    /* Note Text */
+    .note {
+      font-size: 0.9em;
+      color: rgba(255,255,255,0.6);
+      margin-top: 2em;
+      font-style: italic;
+    }
+    
+    /* VIP Corner Accents */
+    .corner-accent {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border: 2px solid rgba(255,255,255,0.1);
+      z-index: -1;
+    }
+    
+    .corner-accent-1 {
+      top: 20px;
+      left: 20px;
+      border-right: none;
+      border-bottom: none;
+      border-radius: 15px 0 0 0;
+    }
+    
+    .corner-accent-2 {
+      bottom: 20px;
+      right: 20px;
+      border-left: none;
+      border-top: none;
+      border-radius: 0 0 15px 0;
+    }
+    
+    /* VIP Holographic Border Effect */
+    .holographic-border {
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 25px;
+      background: linear-gradient(45deg, 
+        var(--neon-blue), 
+        var(--neon-purple), 
+        var(--neon-pink), 
+        var(--neon-yellow), 
+        var(--neon-green));
+      background-size: 400% 400%;
+      z-index: -1;
+      opacity: 0.5;
+      animation: borderFlow 8s linear infinite;
+    }
+    
+    @keyframes borderFlow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 400% 50%; }
     }
   </style>
 </head>
 <body>
-  <!-- Space Background Elements -->
+  <!-- VIP Space Background Elements -->
+  <div class="nebula"></div>
   <div class="stars" id="stars"></div>
   <div id="particles"></div>
   <div id="confetti-container"></div>
+  <div class="comet" id="comet"></div>
   
   <div class="index-container">
-    <div class="banner">🚀 Cosmic Birthday Feature Explorer</div>
-    <h1><span class="typing-text">Welcome, Siddhant!</span></h1>
+    <div class="holographic-border"></div>
+    <div class="corner-accent corner-accent-1"></div>
+    <div class="corner-accent corner-accent-2"></div>
+    
+    <div class="banner">🚀 VIP Cosmic Feature Explorer</div>
+    <h1><span class="dynamic-text">Welcome, Siddhant!</span></h1>
     <div class="about">
-      Explore every interactive module in this stellar collection<br>
-      <span style="color:#a5d8ff">Click any feature to launch the experience</span>
+      Explore every interactive module in this stellar VIP collection<br>
+      <span>Click any feature to launch the premium experience</span>
     </div>
     
     <ul class="features-list">
       <li><a href="phase1_greeting.html" target="_blank">Glowing Text, Balloons & Confetti</a></li>
       <li><a href="phase2_countdown.html" target="_blank">Countdown, Age Reveal, Zodiac</a></li>
-      <li><a href="guestbook_wishwall.html" target="_blank">Guestbook & Realtime Wishes Wall</a></li>
-      <li><a href="photo_slideshow.html" target="_blank">Photo Slideshow</a></li>
+      <li><a href="guestbook_wishwall.html" target="_blank">VIP Guestbook & Realtime Wishes Wall</a></li>
+      <li><a href="photo_slideshow.html" target="_blank">Premium Photo Slideshow</a></li>
       <li><a href="voice_upload.html" target="_blank">Voice Note Upload</a></li>
       <li><a href="games_spinwheel.html" target="_blank">Spin the Wheel Game</a></li>
       <li><a href="cake_candle.html" target="_blank">Virtual Cake Cutting & Candle Blow</a></li>
       <li><a href="memory_upload.html" target="_blank">Upload Photos/Memory</a></li>
       <li><a href="polls_and_votes.html" target="_blank">Poll: Vote Your Way</a></li>
       <li><a href="emoji_reactions.html" target="_blank">Emoji and GIF wishes</a></li>
-      <li><a href="live_chat.html" target="_blank">Live Chat/Message Board</a></li>
+      <li><a href="live_chat.html" target="_blank">VIP Live Chat/Message Board</a></li>
       <li><a href="calendar_invite.html" target="_blank">Add to Calendar</a></li>
       <li><a href="game_guessgift.html" target="_blank">Guess the Gift Game</a></li>
       <li><a href="theme_selector.html" target="_blank">Theme/Background Music Selector</a></li>
       <li><a href="fireworks_effect.html" target="_blank">Fireworks/Animated SVGs</a></li>
       <li><a href="canvas_draw.html" target="_blank">Draw Your Wish (Canvas)</a></li>
-      <li><a href="photo_carousel.html" target="_blank">Image Carousel</a></li>
+      <li><a href="photo_carousel.html" target="_blank">Premium Image Carousel</a></li>
       <li><a href="pwa.html" target="_blank">Installable PWA</a></li>
       <li><a href="ai_greet.html" target="_blank">AI-generated Image Greeting</a></li>
-      <li><a href="all_features_final.html" target="_blank"><b>🎁 Mega All-in-One Demo</b></a></li>
+      <li><a href="all_features_final.html" target="_blank"><b>🎁 VIP Mega All-in-One Demo</b></a></li>
       <li><a href="whatsapp_share.html" target="_blank">Share on WhatsApp + Copy Message</a></li>
       <li><a href="floating_quotes_progress.html" target="_blank">Floating Quotes + Progress Bar</a></li>
       <li><a href="theme_color_switcher.html" target="_blank">Birthday Theme Selector</a></li>
@@ -334,52 +572,85 @@
     </ul>
     
     <div class="note">
-      Tip: Click any feature to launch it in a new tab!
+      VIP Tip: Click any feature to launch it in a new tab with premium effects!
     </div>
   </div>
 
   <script>
     // Create twinkling stars
     const starsContainer = document.getElementById('stars');
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < 300; i++) {
       const star = document.createElement('div');
       star.className = 'star';
-      star.style.width = `${Math.random() * 3}px`;
+      star.style.width = `${Math.random() * 4}px`;
       star.style.height = star.style.width;
       star.style.left = `${Math.random() * 100}vw`;
       star.style.top = `${Math.random() * 100}vh`;
       star.style.setProperty('--duration', `${Math.random() * 5 + 3}s`);
+      star.style.opacity = Math.random() * 0.8 + 0.2;
       starsContainer.appendChild(star);
     }
     
-    // Create floating particles
-    const particles = ['✦', '✧', '✵', '✸', '✹', '★', '☆', '✺'];
+    // Create floating cosmic particles
+    const cosmicParticles = ['✦', '✧', '✵', '✸', '✹', '★', '☆', '✺', '✷', '✶', '✴', '✳', '✱'];
     const particleContainer = document.getElementById('particles');
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 50; i++) {
       const particle = document.createElement('div');
       particle.className = 'particle';
-      particle.textContent = particles[Math.floor(Math.random() * particles.length)];
+      particle.textContent = cosmicParticles[Math.floor(Math.random() * cosmicParticles.length)];
       particle.style.left = `${Math.random() * 100}vw`;
       particle.style.top = `${Math.random() * 100}vh`;
-      particle.style.fontSize = `${Math.random() * 10 + 10}px`;
-      particle.style.animationDuration = `${Math.random() * 10 + 5}s`;
-      particle.style.color = `hsl(${Math.random() * 60 + 180}, 100%, 70%)`;
+      particle.style.fontSize = `${Math.random() * 12 + 10}px`;
+      particle.style.animationDuration = `${Math.random() * 15 + 10}s`;
+      particle.style.setProperty('--random-x', Math.random());
+      particle.style.setProperty('--random-y', Math.random());
+      
+      // Rainbow colors for particles
+      const hue = Math.random() * 360;
+      particle.style.color = `hsl(${hue}, 100%, 70%)`;
+      
       particleContainer.appendChild(particle);
     }
     
-    // Create occasional confetti
+    // Create VIP confetti with holographic effect
     function createConfetti() {
-      const colors = ['#ff2a6d', '#05d9e8', '#d300ff', '#ffcc00', '#00ff88'];
+      const colors = [
+        'rgba(255, 42, 109, 0.8)', 
+        'rgba(5, 217, 232, 0.8)', 
+        'rgba(211, 0, 255, 0.8)', 
+        'rgba(255, 204, 0, 0.8)', 
+        'rgba(0, 255, 136, 0.8)'
+      ];
+      const shapes = ['circle', 'square', 'triangle', 'star'];
       const container = document.getElementById('confetti-container');
-      for (let i = 0; i < 50; i++) {
+      
+      for (let i = 0; i < 80; i++) {
         const confetti = document.createElement('div');
         confetti.className = 'confetti';
         confetti.style.left = `${Math.random() * 100}vw`;
         confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.width = `${Math.random() * 8 + 4}px`;
-        confetti.style.height = `${Math.random() * 8 + 4}px`;
+        confetti.style.width = `${Math.random() * 12 + 6}px`;
+        confetti.style.height = confetti.style.width;
         confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
         confetti.style.animationDelay = `${Math.random() * 2}s`;
+        
+        // Random shape
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+        switch(shape) {
+          case 'circle':
+            confetti.style.borderRadius = '50%';
+            break;
+          case 'square':
+            confetti.style.borderRadius = '0';
+            break;
+          case 'triangle':
+            confetti.style.clipPath = 'polygon(50% 0%, 0% 100%, 100% 100%)';
+            break;
+          case 'star':
+            confetti.style.clipPath = 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)';
+            break;
+        }
+        
         container.appendChild(confetti);
         
         setTimeout(() => {
@@ -388,20 +659,54 @@
       }
     }
     
-    // Initial confetti burst
+    // Create comet animation
+    function createComet() {
+      const comet = document.getElementById('comet');
+      comet.style.left = `${Math.random() * 20}vw`;
+      comet.style.top = `${Math.random() * 20}vh`;
+      comet.style.animationDuration = `${Math.random() * 10 + 15}s`;
+      comet.style.animationDelay = `${Math.random() * 5}s`;
+      
+      setTimeout(() => {
+        createComet();
+      }, 20000);
+    }
+    
+    // Initial effects
     setTimeout(createConfetti, 1000);
+    createComet();
     
-    // Periodic confetti
-    setInterval(createConfetti, 10000);
+    // Periodic effects
+    setInterval(createConfetti, 12000);
     
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
+    // Dynamic welcome text color change
+    const welcomeText = document.querySelector('.dynamic-text');
+    const colors = [
+      {color: 'var(--neon-blue)', shadow: '0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue)'},
+      {color: 'var(--neon-purple)', shadow: '0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple)'},
+      {color: 'var(--neon-pink)', shadow: '0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink)'},
+      {color: 'var(--neon-yellow)', shadow: '0 0 10px var(--neon-yellow), 0 0 20px var(--neon-yellow)'},
+      {color: 'var(--neon-green)', shadow: '0 0 10px var(--neon-green), 0 0 20px var(--neon-green)'}
+    ];
+    
+    let currentColor = 0;
+    setInterval(() => {
+      welcomeText.style.color = colors[currentColor].color;
+      welcomeText.style.textShadow = colors[currentColor].shadow;
+      currentColor = (currentColor + 1) % colors.length;
+    }, 2000);
+    
+    // Add hover effect to container
+    const container = document.querySelector('.index-container');
+    container.addEventListener('mousemove', (e) => {
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+      
+      container.style.transform = `rotateX(${(y - 0.5) * 5}deg) rotateY(${(x - 0.5) * -5}deg)`;
+    });
+    
+    container.addEventListener('mouseleave', () => {
+      container.style.transform = 'rotateX(0) rotateY(0)';
     });
   </script>
 </body>
