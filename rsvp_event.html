@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>RSVP | Birthday Event | Siddhant</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <style>
+    body {background:linear-gradient(120deg,#e8fff8 40%,#ffdff5 100%);
+      min-height:100vh;margin:0;font-family:'Segoe UI',cursive,sans-serif;}
+    .container {max-width:410px;margin:56px auto 38px auto;background:#fffefaee;border-radius:18px;box-shadow:0 8px 28px #87f7c959;text-align:center;padding:2.1em 1em 2.5em 1em;}
+    h1 {color:#249d8b;font-family:'Brush Script MT',cursive;font-size:2em;}
+    .msg{color:#8e51b6;margin:1.3em 0 1.2em 0;font-size:1.13em;}
+    .rsvp-btns {margin:2em 0 1em 0;display:flex;justify-content:center;gap:1.1em;}
+    .rsvp-btn {padding:13px 32px;border-radius:19px;font-size:1.07em;font-weight:bold;border:none;cursor:pointer;transition:.16s;}
+    .rsvp-btn.attend {background:#7af7ca;color:#1e6b45;}
+    .rsvp-btn.maybe {background:#ffefae;color:#ad8c00;}
+    .rsvp-btn.no {background:#ffe1e1;color:#be3e60;}
+    .rsvp-btn.selected {box-shadow:0 0 16px #8bfcaa77;}
+    .rsvp-counts {margin:2.1em 0 1.1em 0;color:#745bc2;font-size:1.14em;}
+    .tip{color:#aca;font-size:.93em;margin-top:2.1em;}
+    @media(max-width:450px){.container{max-width:97vw;}.rsvp-btns button{padding:10px 5vw;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎫 Birthday RSVP</h1>
+    <div class="msg">
+      Will you join Siddhant's birthday celebration<br>
+      on <b>29th July</b> at 7PM?<br>
+      <span style="color:#1aa088;font-size:.98em;">(Your response will be remembered)</span>
+    </div>
+    <div class="rsvp-btns">
+      <button class="rsvp-btn attend" onclick="sendRSVP('attend')" id="btnA">✅ I'll be there!</button>
+      <button class="rsvp-btn maybe" onclick="sendRSVP('maybe')" id="btnM">🤔 Maybe</button>
+      <button class="rsvp-btn no" onclick="sendRSVP('no')" id="btnN">❌ Can't Make it</button>
+    </div>
+    <div class="rsvp-counts" id="rsvpCounts">
+      <!-- Counts populated here -->
+    </div>
+    <div class="tip">*You can update your RSVP anytime (for demo)*</div>
+  </div>
+  <script>
+    // Localstorage key for this session
+    const key = "sid_bday_rsvp";
+    // RSVP counts key
+    const ckey = "sid_bday_rsvp_counts";
+    // Count data [attend, maybe, no]
+    let counts = JSON.parse(localStorage.getItem(ckey)||"[0,0,0]");
+    let myRSVP = localStorage.getItem(key);
+
+    function updateCounts(newVote){
+      // Remove old vote
+      if(myRSVP) {
+        if(myRSVP=="attend") counts[0]--;
+        if(myRSVP=="maybe") counts[1]--;
+        if(myRSVP=="no") counts[2]--;
+      }
+      // Add new vote
+      if(newVote=="attend") counts[0]++;
+      if(newVote=="maybe") counts[1]++;
+      if(newVote=="no") counts[2]++;
+      // Save
+      localStorage.setItem(ckey,JSON.stringify(counts));
+    }
+
+    function sendRSVP(type){
+      updateCounts(type);
+      myRSVP = type;
+      localStorage.setItem(key,type);
+      renderCounts();
+      setSelectedBtn();
+    }
+
+    function renderCounts(){
+      let msg = [
+        `✅ Yes: <b>${counts[0]}</b>`,
+        `🤔 Maybe: <b>${counts[1]}</b>`,
+        `❌ No: <b>${counts[2]}</b>`
+      ].join('&nbsp;&nbsp;|&nbsp;&nbsp;');
+      document.getElementById("rsvpCounts").innerHTML = msg;
+    }
+
+    function setSelectedBtn(){
+      ["btnA","btnM","btnN"].forEach(id=>document.getElementById(id).classList.remove("selected"));
+      if(myRSVP=="attend") document.getElementById("btnA").classList.add("selected");
+      if(myRSVP=="maybe") document.getElementById("btnM").classList.add("selected");
+      if(myRSVP=="no") document.getElementById("btnN").classList.add("selected");
+    }
+
+    // Initialize display
+    renderCounts(); setSelectedBtn();
+  </script>
+</body>
+</html>
