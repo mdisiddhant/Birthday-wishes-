@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Flip Card Reveal | Siddhant</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <style>
+    body {
+      background:linear-gradient(110deg,#f6e7ff 65%,#e1fff3 100%);
+      min-height:100vh;margin:0;font-family:'Segoe UI',cursive,sans-serif;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .flip-container {
+      perspective:1200px;
+      width:260px;
+      height:330px;
+      margin:60px 0 24px 0;
+    }
+    .flipper {
+      width:100%;height:100%;
+      transition:transform 0.8s cubic-bezier(.76,.28,0,1);
+      transform-style:preserve-3d;
+      position:relative;
+      cursor:pointer;
+    }
+    .flip-container.flip .flipper { transform:rotateY(180deg); }
+    .card-face {
+      position:absolute;width:100%;height:100%;
+      border-radius:23px;background:#fffefaee;
+      box-shadow:0 6px 30px #9b74fc24;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      font-size:1.14em;
+      backface-visibility:hidden;
+    }
+    .front {
+      z-index:2;
+      background:linear-gradient(120deg,#ffe0ed89 45%,#bdd6f9cc 100%);
+    }
+    .front .emoji { font-size:2.3em; }
+    .back {
+      background:linear-gradient(120deg,#dbf7ffcc 35%,#fdafff 95%);
+      transform:rotateY(180deg);
+      text-align:center;
+    }
+    .photo {
+      width:95px;height:95px;border-radius:50%;object-fit:cover;box-shadow:0 2px 11px #ecd8fa77;margin:.6em 0;
+    }
+    .fact { margin-top:.7em;color:#821d8e;font-size:1.06em;font-style:italic;}
+    .hint {font-size:.93em;color:#b594fe;margin-top:1.3em;}
+    @media(max-width:378px){.flip-container{width:92vw;height:300px;}}
+  </style>
+</head>
+<body>
+  <div class="flip-container" id="flipperBox" ontouchstart="flipHandler()" onclick="flipHandler()">
+    <div class="flipper" id="flipper">
+      <div class="card-face front">
+        <div class="emoji">🎈🎉</div>
+        <div style="font-family:'Brush Script MT',cursive;color:#cf1ed1;font-size:1.35em;">Happy Birthday Siddhant!</div>
+        <div style="margin:.8em 0;text-shadow:0 2px 8px #e7caf466; color:#326;">
+          Tap to Reveal a Fun Birthday Surprise!
+        </div>
+      </div>
+      <div class="card-face back">
+        <img src="photo1.jpg" class="photo" alt="Secret Memory" />
+        <div class="fact">
+          “Did you know? Siddhant’s birthday is 29 July, making him a proud <b>Leo 🦁</b> — bold, bright, and born to lead!<br>
+          <span style="font-size:.95em;color:#f15;">(Swipe again to flip back)</span>
+        </div>
+      </div>
+    </div>
+    <div class="hint">▶️ Flip/tap card for fact or photo. <br>Multiple cards possible!</div>
+  </div>
+  <script>
+    // One card demo; multiple cards: copy flip-container block!
+    function flipHandler(){
+      document.getElementById("flipperBox").classList.toggle("flip");
+    }
+  </script>
+</body>
+</html>
