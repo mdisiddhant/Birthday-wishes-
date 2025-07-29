@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Image Birthday Greeting | Siddhant</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <style>
+    body{font-family:'Segoe UI',cursive,sans-serif;margin:0;background:linear-gradient(135deg,#e6fcff 40%,#ffe0fa 100%);}
+    .container{max-width:430px;margin:55px auto 27px auto;background:#fffefaee;border-radius:19px;box-shadow:0 7px 32px #dba8f934;padding:2.1em 1.1em 2.2em 1.1em;text-align:center;}
+    h1{color:#33bab2;font-size:2em;font-family:'Brush Script MT',cursive;}
+    .prompt-block{margin:1.6em 0 .8em 0;}
+    input{width:78%;padding:9px 13px;border-radius:10px;font-size:1.1em;margin-bottom:.7em;border:1.5px solid #b5a8f0;}
+    button{padding:10px 29px;margin-left:.9em;border-radius:10px;background:#85e7fa;font-size:1em;color:#117aaa;border:none;font-weight:bold;cursor:pointer;}
+    button:active{background:#ffd166;color:#ac7c07;}
+    .ai-image{margin:1.5em auto .1em auto; max-width:270px; border-radius:14px;box-shadow:0 3px 14px #e1aaff79;}
+    .loading{margin:1.4em 0 .7em 0;font-size:1.1em;color:#90bed2;}
+    .note{color:#969;font-size:.99em;margin-top:1.2em;}
+    @media(max-width:500px){.container{max-width:97vw;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🤖 AI Birthday Image Greeting</h1>
+    <div class="prompt-block">
+      <input type="text" id="prompt" placeholder="Type your image prompt (e.g. birthday cake with space theme)">
+      <button onclick="generateAI()">Generate!</button>
+    </div>
+    <div id="aiImgArea"></div>
+    <div class="note">AI generated images demo.<br/>
+      <b>Live image APIs</b> (DALL·E/Bing) के लिए JS fetch + API endpoint जोड़ सकते हैं.<br>
+      प्रोविजन के लिए demo नीचे static random fun images show करता है.<br>
+      (अपने पसंद की PNGs/links जोड़कर भी इस्तेमाल कर सकते हैं!)
+    </div>
+  </div>
+  <script>
+    // Static demo images (In real use: integrate DALL·E/Bing/Image API for .src)
+    const demoImgs = [
+      {src:"ai_birthday1.png",alt:"Birthday cat and cake"},
+      {src:"ai_birthday2.png",alt:"Dog party time"},
+      {src:"ai_birthday3.png",alt:"Galaxy-themed cake"},
+      {src:"ai_birthday4.png",alt:"Cartoon kids with balloons"},
+      {src:"ai_birthday5.png",alt:"Cosmic birthday surprise"},
+      {src:"https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg", alt:"Bing stock birthday img"},
+      {src:"https://images.pexels.com/photos/2072181/pexels-photo-2072181.jpeg", alt:"cake balloons stars"}
+    ];
+    function generateAI(){
+      const area=document.getElementById("aiImgArea");
+      area.innerHTML='<div class="loading">Thinking... Generating magic! ✨🤖</div>';
+      setTimeout(()=>{
+        // Simulate AI
+        const pick = Math.floor(Math.random()*demoImgs.length);
+        area.innerHTML = `<img src="${demoImgs[pick].src}" class="ai-image" alt="${demoImgs[pick].alt}"><br>
+        <div style="color:#6238a5;margin:.7em 0 .2em 0;">"${demoImgs[pick].alt}"</div>`;
+      },1400);
+    }
+  </script>
+</body>
+</html>
