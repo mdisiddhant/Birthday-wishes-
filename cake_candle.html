@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Birthday Cake Cutting & Candle | Siddhant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    body {background:linear-gradient(120deg,#ffe8ec,#c0d9ea 100%);
+      min-height:100vh;margin:0;font-family:'Segoe UI',cursive;}
+    .container { max-width:360px; margin:46px auto 34px auto; background:#fffefaee; border-radius:20px; box-shadow:0 6px 24px #f69ad344; text-align:center; padding:2.5em 1.1em 2.2em 1.1em;}
+    h1 {font-family:'Brush Script MT',cursive;font-size:2em;color:#c052b2;}
+    .cake-wrap {margin:1.4em auto 1em auto;}
+    #cake {display:block;margin:0 auto;}
+    .cut-btn {margin:1.6em auto 1em auto;padding:13px 33px;font-size:1.15em;background:#ff85cb;font-weight:bold;border-radius:19px;border:none;color:#fff;box-shadow:0 2px 16px #f98ba5bb;cursor:pointer;}
+    .cut-btn:active {background:#d44290;}
+    .msg {font-size:1.05em;margin:1.4em 0 0.5em 0;color:#653b7f;}
+    @media(max-width:440px){.container{max-width:98vw;}.cake-wrap{max-width:90vw;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎂 Cut the Cake! 🍰</h1>
+    <div class="cake-wrap">
+      <!-- SVG Cake with 3 Layers, 3 candles (SVG flames) -->
+      <svg width="180" height="180" id="cake">
+        <!-- Plate -->
+        <ellipse cx="90" cy="165" rx="70" ry="20" fill="#efe9f6" />
+        <!-- Cake base -->
+        <ellipse cx="90" cy="120" rx="65" ry="27" fill="#ffa7b1" />
+        <rect x="25" y="70" width="130" height="60" rx="26" fill="#ff6dbb" />
+        <!-- Mid Layer -->
+        <ellipse cx="90" cy="80" rx="55" ry="19" fill="#fffde8" />
+        <rect x="35" y="40" width="110" height="40" rx="19" fill="#f9d99c" />
+        <!-- Top Layer -->
+        <ellipse cx="90" cy="40" rx="42" ry="14" fill="#ffb86e" />
+        <ellipse cx="90" cy="35" rx="40" ry="12" fill="#f9a7dc" />
+        <!-- 3 Candles -->
+        <rect x="68" y="11" width="6" height="22" rx="3" fill="#8ff5ff" />
+        <rect x="88" y="6"  width="6" height="27" rx="3" fill="#d99aff" />
+        <rect x="110" y="16" width="6" height="17" rx="3" fill="#fafd90"/>
+        <!-- Flames -->
+        <ellipse id="flame1" cx="71" cy="10" rx="3" ry="6" fill="#ffe045" opacity="0.93"/>
+        <ellipse id="flame2" cx="91" cy="4"  rx="3.5" ry="7" fill="#ffd400" opacity="0.89"/>
+        <ellipse id="flame3" cx="113" cy="13" rx="2.6" ry="4.7" fill="#ffe045" opacity="0.7"/>
+        <!-- Cake slices (hidden, revealed on cut) -->
+        <g id="slice" style="display:none;">
+          <path d="M90 40 A40 14 0 0 1 130 44 L130 80 A42 14 0 0 0 90 40" fill="#fff" stroke="#ffb86e" stroke-width="2"/>
+        </g>
+      </svg>
+    </div>
+    <button class="cut-btn" onclick="cutCake()" id="cutBtn">🎉 Cut a Slice!</button>
+    <div id="cakeMsg" class="msg"></div>
+  </div>
+  <script>
+    // Animate candle flames (jitter up/down)
+    let t=0;
+    function flameAnim(){
+      t+=0.13;
+      document.getElementById("flame1").setAttribute("cy",10+Math.sin(t+1)*2.2);
+      document.getElementById("flame2").setAttribute("cy",4+Math.sin(t+2.3)*1.8);
+      document.getElementById("flame3").setAttribute("cy",13+Math.cos(t)*2.1);
+      requestAnimationFrame(flameAnim);
+    }
+    flameAnim();
+    // Cake cutting
+    let cut=false;
+    function cutCake(){
+      if(!cut){
+        document.getElementById('slice').style.display="block";
+        document.getElementById('cakeMsg').innerHTML="🍰 Here's your special birthday slice!<br>Wish: May your year be deliciously sweet!";
+        document.getElementById('cutBtn').innerText="Yum! Want more?";
+        cut=true;
+      }else{
+        document.getElementById('slice').style.display="none";
+        document.getElementById('cakeMsg').innerHTML="";
+        document.getElementById('cutBtn').innerText="🎉 Cut a Slice!";
+        cut=false;
+      }
+    }
+  </script>
+</body>
+</html>
