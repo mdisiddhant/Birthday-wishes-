@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Dark/Light Mode + ScrollTop | Siddhant</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <style>
+    :root {
+      --bg-light:#f9f8fc;
+      --bg-dark:#212235;
+      --card-light:#fffefaee;
+      --card-dark:#292848e8;
+      --color-light:#482069;
+      --color-dark:#e8e2ff;
+      --accent: #d33be2;
+      --border: #b8a6f8;
+    }
+    body {
+      background:var(--bg-light);
+      color:var(--color-light);
+      font-family:'Segoe UI',cursive,sans-serif;
+      margin:0;min-height:100vh;transition:.28s;
+    }
+    .mode-dark {
+      background:var(--bg-dark)!important;
+      color:var(--color-dark)!important;
+    }
+    .container {
+      margin:55px auto 34px auto; max-width:440px;
+      background:var(--card-light); border-radius:18px;
+      box-shadow:0 7px 28px #a8d9f822; padding:2.1em 1em 2.3em 1em;
+      text-align:center; position:relative;
+      border:1.5px solid var(--border);
+      transition:.28s;
+    }
+    .mode-dark .container{
+      background:var(--card-dark)!important;
+      color:var(--color-dark)!important;
+      border-color:#9232cc;
+    }
+    h1{font-family:'Brush Script MT',cursive;font-size:2em;color:var(--accent);}
+    .mode-dark h1{color:#fadcff;}
+    .switch-btn{
+      position:absolute;top:15px;right:19px;
+      background:#ffd4f9;border-radius:13px;padding:8px 19px;
+      border:none;font-weight:bold;font-size:1.05em;cursor:pointer;
+      transition:.18s;outline:none;box-shadow:0 2px 9px #ebd4f644;
+      color:var(--accent);
+    }
+    .mode-dark .switch-btn{background:#1e114d;color:#ffd4fc;}
+    .msg{font-size:1.07em;color:#866;margin:1.6em 0 .6em 0;}
+    .mode-dark .msg{color:#efe3fe;}
+    .scroll-top{
+      position:fixed; right:22px; bottom:25px; background:#805cff;
+      color:#fff; border-radius:70%; width:52px; height:52px; font-size:2.1em;
+      border:none; box-shadow:0 4px 20px #6142ce70; cursor:pointer; z-index:33;
+      display:none; align-items:center; justify-content:center;
+      transition:.22s;
+    }
+    .scroll-top.show{display:flex;}
+    .scroll-top:active{background:#ffd166;color:#8e4e00;}
+    @media(max-width:500px){.container{max-width:97vw;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="switch-btn" onclick="toggleMode()" title="Switch Dark/Light">☽/☀️ Mode</button>
+    <h1>Dark/Light Mode Section</h1>
+    <div class="msg">
+      Switch theme as you like:<br>
+      - Light day party<br>
+      - Dark purple disco!<br>
+      <span style="font-size:.97em;color:#b47be3;">Test scroll-top with long content below</span>
+    </div>
+    <div style="margin-top:2.4em;text-align:left;max-width:330px;margin-left:auto;margin-right:auto;color:#a6a;">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at arcu non massa vulputate... (scroll for demo)</p>
+      <p>Sed euismod, tortor ac cursus hendrerit, diam felis faucibus dui, viverra dictum nunc ex at nisi...</p>
+      <p>More lines for scroll test 🎂🎉 ...</p>
+      <p>Dark/Light & Scroll-to-top features are ready for all index sections!</p>
+    </div>
+  </div>
+  <button class="scroll-top" id="scrolltop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script>
+    // Dark/Light Mode Toggle
+    function toggleMode(){
+      document.body.classList.toggle("mode-dark");
+    }
+    // Scroll-to-top Button
+    const sbtn=document.getElementById("scrolltop");
+    window.onscroll=function(){
+      if(window.scrollY > 160) sbtn.classList.add("show");
+      else sbtn.classList.remove("show");
+    }
+  </script>
+</body>
+</html>
