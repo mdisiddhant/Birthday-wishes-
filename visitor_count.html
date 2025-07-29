@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Live Visitor Counter | Siddhant</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <style>
+    body {background:linear-gradient(120deg,#effaff 65%,#eae4fe 100%);
+      min-height:100vh;margin:0;font-family:'Segoe UI',cursive,sans-serif;}
+    .container {max-width:420px;margin:55px auto 34px auto;
+      background:#fffefaee;border-radius:17px;box-shadow:0 8px 32px #b3eaf993;
+      text-align:center;padding:2.2em 1em 2.8em 1em;}
+    h1 {color:#45dab9;font-family:'Brush Script MT',cursive;font-size:2em;}
+    .vcount-box {
+      margin:2.5em 0 1.9em 0;background:#b2fae8cc;border-radius:17px;
+      font-size:1.4em;color:#232d66;
+      padding:23px 0;
+      box-shadow:0 1px 8px #a9dceb38;
+      letter-spacing:1.2px;
+      font-weight:600;
+      border:1.5px dashed #2ae0a0;
+      max-width:291px;
+      margin-left:auto;
+      margin-right:auto;
+      display:flex;align-items:center;justify-content:center;gap:15px;
+    }
+    .vcount-box .dot{
+      display:inline-block;background:#40fb87;width:14px;height:14px;border-radius:90%;box-shadow:0 0 8px #51f29a;
+      margin-right:3px;
+    }
+    .note {font-size:1em;margin-top:2em;color:#6e38a5;}
+    @media(max-width:460px){.container{max-width:97vw;}.vcount-box{max-width:97vw;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>👥 Live Visitor Count</h1>
+    <div class="vcount-box"><span class="dot"></span>
+      Now Online:&nbsp;<span id="liveCounter">0</span>
+    </div>
+    <div class="note">
+      <b>Demo Mode:</b> ये सिंपल JS local/sessionStorage बेस्ड है—<br>
+      अलग उपकरणों/ब्राउजर टैब/फोन से साथ-साथ खोलकर टेस्ट करें<br>
+      (Pure client-side में approximate दिखता है; प्रो में Firebase/SignalR/Pusher real backend से जोड़ सकते हैं)
+    </div>
+    <div style="color:#7e7b9c;font-size:.97em;margin-top:1.7em">
+      - Tab/Browser बंद करते ही काउंट घटेगा<br>
+      - उपयोगकर्ता गुप्त/निजी हैं — केवल Online संख्या public है!
+    </div>
+  </div>
+  <script>
+    // --- Real-time visitor counter --
+    // (Local + sessionStorage Demo)
+    function updateCounter(){
+      let current = parseInt(localStorage.getItem('siddhant_visitor_count')||"0");
+      document.getElementById('liveCounter').innerText = current;
+    }
+
+    // On page load, increment
+    let mainKey = 'siddhant_visitor_count';
+    if(!sessionStorage.getItem('vcounter')){
+      let curr = parseInt(localStorage.getItem(mainKey)||"0");
+      localStorage.setItem(mainKey, curr+1);
+      sessionStorage.setItem('vcounter','1');
+    }
+    updateCounter();
+
+    // On tab close, decrement
+    window.addEventListener("beforeunload",function(){
+      let curr = parseInt(localStorage.getItem(mainKey)||"0");
+      if(curr>0) localStorage.setItem(mainKey, curr-1);
+    });
+
+    // Live refresh on local change
+    window.addEventListener('storage',updateCounter);
+
+    // For demo mode, every 2s check/update (multiple devices)
+    setInterval(updateCounter,1600);
+  </script>
+</body>
+</html>
