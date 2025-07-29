@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Birthday Countdown & Reveal | Siddhant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {font-family:'Segoe UI',cursive,sans-serif;margin:0;padding:0;min-height:100vh;
+          background: linear-gradient(135deg,#a8edea,#fc67fa 89%);overflow-x:hidden;}
+    .container {margin:40px auto;max-width:440px;background:#fffdfaee;border-radius:17px;
+      padding:2.1rem 1.3rem 2.2rem 1.3rem;text-align:center;box-shadow:0 0 32px #e7bcf580;}
+    h1 {color:#d415b6;font-size:2.3em;font-family:'Brush Script MT',cursive;
+         text-shadow:0 0 9px #fa6,0 0 24px #ff7afa;animation:glow 1.5s infinite alternate;}
+    @keyframes glow {
+      to { text-shadow:0 0 26px #ff60f7,0 0 14px #f364d5; color:#4820cc;}
+    }
+    .balloon {font-size:2em;display:inline-block;animation:bounce 1.7s infinite;}
+    @keyframes bounce {0%{transform:translateY(0);}60%{transform:translateY(-18px);}100%{transform:translateY(0);}}
+    #confetti-canvas{position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:1;}
+    .timer {font-size:1.13em;color:#7318a1;padding:.2em 0;margin:.7em 0;letter-spacing:1px;}
+    .age-reveal {font-size:1.07em;color:#33336E;margin-bottom:0.45em;}
+    .zodiac {font-size:1.07em;color:#d14a7e;margin-bottom:.4em;}
+    .typing {font-size:1.12em;color:#310f4a;font-family:monospace;}
+    .reveal{display:inline-block;animation:pop .5s forwards;}
+    @keyframes pop {0%{transform:scale(0.7);}100%{transform:scale(1);}}
+    .msg{min-height:80px;margin:1.17em 0 1.1em 0;}
+    @media(max-width:520px){.container{padding:1.1rem 2vw;max-width:97vw;}}
+  </style>
+</head>
+<body>
+  <canvas id="confetti-canvas"></canvas>
+  <div class="container">
+    <div>
+      <span class="balloon">🎈</span>
+      <span class="balloon" style="animation-delay:.33s">🎉</span>
+      <span class="balloon" style="animation-delay:.74s">🎂</span>
+    </div>
+    <h1>Happy Birthday Siddhant!</h1>
+    <div class="timer" id="countdown"></div>
+    <div class="age-reveal" id="ageReveal"></div>
+    <div class="zodiac" id="zodiacInfo"></div>
+    <div class="msg"><span class="typing" id="typing"></span></div>
+  </div>
+  <script>
+    // 🟣 Confetti Effect
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    let pieces = [];
+    for(let i=0;i<100;i++){
+      pieces.push({
+        x:Math.random()*canvas.width,
+        y:Math.random()*-canvas.height/1.05,
+        r:7+Math.random()*7,
+        d:1+Math.random()*1.4,
+        color:['#fa6','#fb79fa','#53faff','#81e471','#ffd166'][Math.floor(Math.random()*5)]
+      });
+    }
+    function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      pieces.forEach(p=>{
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,2*Math.PI);
+        ctx.fillStyle=p.color;ctx.fill();
+      });
+      update();
+      requestAnimationFrame(draw);
+    }
+    function update(){
+      pieces.forEach(p=>{
+        p.y+=p.d;
+        if(p.y>canvas.height+10){p.y=-12;p.x=Math.random()*canvas.width;}
+      });
+    }
+    draw();
+
+    // ⭐️ Birthday Variables
+    const dob = "2001-07-29"; // <-- यहाँ अपनी DOB YYYY-MM-DD रखिए
+    const name = "Siddhant";
+
+    // Countdown Logic
+    function getNextBirthday() {
+      const now = new Date();
+      let bday = new Date(dob);
+      bday.setFullYear(now.getFullYear());
+      if(bday < now) bday.setFullYear(now.getFullYear()+1);
+      return bday;
+    }
+    function zod(date){
+      let d=new Date(date),m=d.getMonth()+1,n=d.getDate();
+      let signs=[
+        [1,20,'Capricorn'],[2,18,'Aquarius'],[3,20,'Pisces'],[4,20,'Aries'],
+        [5,21,'Taurus'],[6,21,'Gemini'],[7,23,'Cancer'],[8,23,'Leo'],
+        [9,23,'Virgo'],[10,23,'Libra'],[11,22,'Scorpio'],[12,22,'Sagittarius'],[12,31,'Capricorn']
+      ];
+      for(let i=0;i<signs.length-1;i++){
+        let s=signs[i],e=signs[i+1];
+        if((m===s[0]&&n>=s[1])||(m===e[0]&&n<e[1])) return s[2];
+      }
+      return 'Unknown';
+    }
+    // Countdown Renderer
+    function renderCountdown(){
+      const cd=document.getElementById('countdown');
+      const now = new Date(), bd=getNextBirthday();
+      let diff=bd-now;
+      if(diff<=0){cd.textContent="🎉 It's Birthday Time!";return;}
+      let d = Math.floor(diff/(1000*60*60*24));
+      let h = Math.floor((diff/(1000*60*60))%24);
+      let m = Math.floor((diff/(1000*60))%60);
+      let s = Math.floor((diff/1000)%60);
+      cd.textContent=`🎂 Next Birthday in: ${d} days, ${h} hrs, ${m} min, ${s} sec`;
+    }
+    setInterval(renderCountdown,1000); renderCountdown();
+
+    // Age Reveal!
+    function showAge(){
+      const now = new Date(), dobD = new Date(dob);
+      let age = now.getFullYear()-dobD.getFullYear();
+      let m = now.getMonth()-dobD.getMonth();
+      if(m<0||(m===0&&now.getDate()<dobD.getDate())) age--;
+      let reveal = document.getElementById('ageReveal');
+      let shown = 0;
+      let speed = 70;
+      reveal.innerHTML="<span style='opacity:.5;'>🎁</span>";
+      let interval = setInterval(()=>{
+        if(shown===age){
+          clearInterval(interval);
+          reveal.innerHTML=`🎉 <span class="reveal">${age}</span> years old & awesome! <span style='opacity:.5;'>🎈</span>`;
+        }else {
+          shown++;
+          reveal.innerHTML=`<span style="font-family:monospace;font-size:1.19em;color:#bf26e6">${shown}</span>`;
+        }
+      },speed);
+    }
+    showAge();
+
+    // Zodiac Info
+    document.getElementById('zodiacInfo').innerHTML=`Zodiac Sign: <b>${zod(dob)}</b>`;
+
+    // Typing Animation
+    const text = `Dear ${name},\nWishing you a year as special & vibrant as you!\nMay adventure, laughter, & love find you at every step.\nHappy Birthday! 🥳💜`;
+    let char = 0;
+    let typing = document.getElementById('typing');
+    function typeMessage(){
+      if(char<text.length){
+        typing.innerHTML+=text[char]==='\n'?"<br>":text[char];
+        char++; setTimeout(typeMessage,33+Math.random()*43);
+      }
+    }
+    setTimeout(typeMessage,700);
+  </script>
+</body>
+  </html>
+  
