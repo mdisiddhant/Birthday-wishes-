@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add to Calendar | Siddhant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    body { background:linear-gradient(115deg,#e8f6fd 45%,#ffe0ed 100%);
+      min-height:100vh; margin:0; font-family:'Segoe UI',cursive;}
+    .container{background:#fffefaee;max-width:420px;border-radius:18px;
+      box-shadow:0 7px 26px #bfeae7aa;margin:52px auto 34px auto;
+      text-align:center;padding:2em 1.1em 2.2em 1.1em;}
+    h1{color:#28a99e;font-size:2em;font-family:'Brush Script MT',cursive;}
+    .calendar-links{margin:1.7em 0 0 0;}
+    .calendar-links a{display:block;margin:.85em 0;background:#bdeafe;
+      color:#398ec9;font-weight:500;text-decoration:none;border-radius:10px;
+      padding:13px 0;font-size:1.18em;transition:.15s;}
+    .calendar-links a:hover{background:#fc97ce;color:#aa008a;}
+    .ical-btn{background:#ffe6a2;color:#af7e0f;}
+    .gcal-btn{background:#dffbe9;color:#1eb381;}
+    .note{color:#568b9a;font-size: 1em;margin-top:1.7em;}
+    @media(max-width:460px){.container{max-width:97vw;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📅 Add Siddhant's Birthday to Your Calendar</h1>
+    <div style="color:#814f82;margin:8px 0 1.4em 0;font-size:1.08em;">
+      <b>Date:</b> 29th July<br>
+      <b>Time:</b> All Day (Yearly recurring)<br>
+      <b>Event:</b> Happy Birthday Siddhant 🎂
+    </div>
+    <div class="calendar-links">
+      <a class="gcal-btn" target="_blank"
+         href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Happy+Birthday+Siddhant%21&dates=20250729/20250729&details=Wishing+Siddhant+a+fantastic+birthday%21+Send+your+wish%3A+%0A%0Ahttps%3A%2F%2Fyourcustomwishpage.com%2F&recur=RRULE%3AFREQ%3DYEARLY">
+        📅 Google Calendar में जोड़ें
+      </a>
+      <a class="ical-btn" download="siddhant_birthday.ics"
+         href="data:text/calendar;charset=utf-8,BEGIN:VCALENDAR%0D%0AVERSION:2.0%0D%0ABEGIN:VEVENT%0D%0ASUMMARY:Happy%20Birthday%20Siddhant!%0D%0ADESCRIPTION:Wishing%20Siddhant%20a%20fantastic%20birthday!%0D%0ADTSTART;VALUE=DATE:20250729%0D%0ADTEND;VALUE=DATE:20250730%0D%0ARRULE:FREQ=YEARLY%0D%0AEND:VEVENT%0D%0AEND:VCALENDAR">
+        🍏 Outlook/iCal (.ICS) फाइल Download करें
+      </a>
+    </div>
+    <div class="note">
+      - गूगल इंसर्ट से सीधे reminder लगाएँ<br>
+      - iPhone/Outlook वाले .ics फाइल डाउनलोड कर सकते हैं<br>
+      - <b>हर साल ऑटो-रिमाइंडर!</b><br>
+      - (अपने page लिंक/details ऊपर बदल सकते हैं)
+    </div>
+  </div>
+</body>
+</html>
